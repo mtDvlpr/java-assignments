@@ -7,10 +7,18 @@ public class Main {
     public static void main(String[] args) {
         // Create a scanner to read user input
         Scanner in = new Scanner(System.in);
+        String input;
 
-        // Ask for group size and return the answer
-        System.out.print("How many students are in the group? ");
-        int size = Integer.parseInt(in.nextLine());
+        // Ask for group size until a valid answer is given
+        do {
+            System.out.print("How many students are in the group? ");
+            input = in.nextLine();
+            if (!validInt(input)) {
+                System.out.println("That was not a valid number.");
+            }
+        }
+        while (!validInt(input));
+        int size = Integer.parseInt(input);
         System.out.println("Group size: " + size);
         System.out.println();
 
@@ -56,6 +64,16 @@ public class Main {
         for (int i = 0; i < students.length; i++) {
             System.out.printf("Student #%s: %-10s | Present: %s", i + 1, students[i].name, students[i].present);
             System.out.println();
+        }
+    }
+
+    static boolean validInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
         }
     }
 }
