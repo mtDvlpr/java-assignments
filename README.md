@@ -1,2 +1,2 @@
 # java-assignments
-Java assignments I do at my study Information Technology at InHolland.
+Java assignments I do for my study Information Technology at InHolland.
