@@ -13,11 +13,16 @@ public class Main {
         do {
             System.out.print("How many students are in the group? ");
             input = in.nextLine();
-            if (!validInt(input)) {
+            if (invalidInt(input)) {
                 System.out.println("That was not a valid number.");
             }
+            else if (Integer.parseInt(input) < 1) {
+                System.out.println("Please enter a number greater than 0.");
+            }
         }
-        while (!validInt(input));
+        while (invalidInt(input) || Integer.parseInt(input) < 1);
+
+        // Print the input
         int size = Integer.parseInt(input);
         System.out.println("Group size: " + size);
         System.out.println();
@@ -67,13 +72,14 @@ public class Main {
         }
     }
 
-    static boolean validInt(String value) {
+    // Check if input is invalid integer
+    static boolean invalidInt(String value) {
         try {
             Integer.parseInt(value);
-            return true;
+            return false;
         }
         catch (NumberFormatException e) {
-            return false;
+            return true;
         }
     }
 }
