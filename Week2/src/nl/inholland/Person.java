@@ -24,4 +24,17 @@ public abstract class Person {
     public int getAge() {
         return Period.between(birthdate, LocalDate.now()).getYears();
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", levelOfAccess=" + levelOfAccess +
+                '}';
+    }
 }

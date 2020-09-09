@@ -11,8 +11,13 @@ public class DataInitializer {
     List<Person> persons;
 
     public DataInitializer() throws FileNotFoundException {
-        // Read students from Students.txt
-        Scanner studentScanner = new Scanner(new File("Students.txt"));
+        readStudents();
+        readTeachers();
+        readManagers();
+    }
+
+    private void readStudents() throws FileNotFoundException {
+        Scanner studentScanner = new Scanner(new File("src\\nl\\inholland\\Students.txt"));
         while (studentScanner.hasNextLine()) {
             String line = studentScanner.nextLine();
             String[] studentArray = line.split(", ");
@@ -20,8 +25,9 @@ public class DataInitializer {
             persons.add(student);
         }
         studentScanner.close();
+    }
 
-        // Read teachers from Teachers.txt
+    private void readTeachers() throws FileNotFoundException {
         Scanner teacherScanner = new Scanner(new File("Teachers.txt"));
         while (teacherScanner.hasNextLine()) {
             String line = teacherScanner.nextLine();
@@ -30,8 +36,9 @@ public class DataInitializer {
             persons.add(teacher);
         }
         teacherScanner.close();
+    }
 
-        // Read managers from Managers.txt
+    private void readManagers() throws FileNotFoundException {
         Scanner managerScanner = new Scanner(new File("Managers.txt"));
         while (managerScanner.hasNextLine()) {
             String line = managerScanner.nextLine();
