@@ -1,12 +1,12 @@
 package nl.inholland;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Student extends Person {
     String group;
 
-    public Student(String firstName, String lastName, Date birthdate, int age, String group) {
-        super(firstName, lastName, birthdate, age);
+    public Student(int id, String firstName, String lastName, LocalDate birthdate, String group, String username, String password) {
+        super(id, firstName, lastName, birthdate, username, password);
         this.group = group;
         levelOfAccess = LevelOfAccess.Basic;
     }

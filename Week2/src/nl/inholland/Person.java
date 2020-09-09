@@ -1,27 +1,27 @@
 package nl.inholland;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
-public class Person {
-    static int nextId = 1;
+public abstract class Person {
     int id;
     String firstName;
     String lastName;
-    Date birthdate;
-    int age;
+    LocalDate birthdate;
     String username;
     String password;
     LevelOfAccess levelOfAccess;
 
-    public Person(String firstName, String lastName, Date birthdate, int age, String username, String password) {
-        this.id = nextId;
+    public Person(int id, String firstName, String lastName, LocalDate birthdate, String username, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
-        this.age = age;
         this.username = username;
         this.password = password;
+    }
 
-        nextId++;
+    public int getAge() {
+        return Period.between(birthdate, LocalDate.now()).getYears();
     }
 }
