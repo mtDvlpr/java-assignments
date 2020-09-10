@@ -21,8 +21,6 @@ public class Main {
                     System.out.println("S. Display Students | T. Display Teachers | X. Exit |");
                     break;
                 case Editor:
-                    System.out.println("S. Display Students | T. Display Teachers | A. Add Students | R. Display Reports | X. Exit |");
-                    break;
                 case Admin:
                     System.out.println("S. Display Students | T. Display Teachers | A. Add Students | R. Display Reports | X. Exit |");
                     break;
