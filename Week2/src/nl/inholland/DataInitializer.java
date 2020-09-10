@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DataInitializer {
-    List<Person> persons;
+    private List<Person> persons;
 
     public DataInitializer() throws FileNotFoundException {
         persons = new ArrayList<>();

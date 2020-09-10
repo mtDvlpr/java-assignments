@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public abstract class Person {
-    int id;
-    String firstName;
-    String lastName;
-    LocalDate birthdate;
-    String username;
-    String password;
-    LevelOfAccess levelOfAccess;
+    protected int id;
+    protected String firstName;
+    protected String lastName;
+    protected LocalDate birthdate;
+    protected String username;
+    private String password;
+    protected LevelOfAccess levelOfAccess;
 
     public Person(int id, String firstName, String lastName, LocalDate birthdate, String username, String password) {
         this.id = id;
@@ -23,6 +23,10 @@ public abstract class Person {
 
     public int getAge() {
         return Period.between(birthdate, LocalDate.now()).getYears();
+    }
+
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
     }
 
     @Override
