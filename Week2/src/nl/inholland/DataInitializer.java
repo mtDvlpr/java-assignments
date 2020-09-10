@@ -2,7 +2,10 @@ package nl.inholland;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +14,10 @@ public class DataInitializer {
     private List<Person> persons;
 
     public DataInitializer() throws FileNotFoundException {
+        initialize();
+    }
+
+    private void initialize() throws FileNotFoundException {
         persons = new ArrayList<>();
         readStudents();
         readTeachers();
@@ -50,11 +57,13 @@ public class DataInitializer {
         managerScanner.close();
     }
 
-    public List<Person> getPersons() {
+    public List<Person> getPersons() throws FileNotFoundException {
+        initialize();
         return persons;
     }
 
-    public List<Student> getStudents() {
+    public List<Student> getStudents() throws FileNotFoundException {
+        initialize();
         List<Student> students = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Student) {
@@ -64,7 +73,8 @@ public class DataInitializer {
         return students;
     }
 
-    public List<Teacher> getTeachers() {
+    public List<Teacher> getTeachers() throws FileNotFoundException {
+        initialize();
         List<Teacher> teachers = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Teacher) {
@@ -74,7 +84,8 @@ public class DataInitializer {
         return teachers;
     }
 
-    public List<Manager> getManagers() {
+    public List<Manager> getManagers() throws FileNotFoundException {
+        initialize();
         List<Manager> managers = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Manager) {
@@ -84,4 +95,23 @@ public class DataInitializer {
         return managers;
     }
 
+    public boolean addStudent(Student student) {
+        try {
+            Writer w = new FileWriter("Students.txt", true);
+            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s",
+                    student.id,
+                    student.firstName,
+                    student.lastName,
+                    student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    student.group,
+                    student.username,
+                    student.getPassword());
+            w.write(studentString);
+            w.close();
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
 }
