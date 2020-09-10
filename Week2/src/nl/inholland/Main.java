@@ -24,7 +24,7 @@ public class Main {
                     System.out.println("S. Display Students | T. Display Teachers | A. Add Students | R. Display Reports | X. Exit |");
                     break;
                 case Admin:
-                    System.out.println("S. Display Students | T. Display Teachers | A. Add Students | R. Display Reports | G. Generate Reports | X. Exit |");
+                    System.out.println("S. Display Students | T. Display Teachers | A. Add Students | R. Display Reports | X. Exit |");
                     break;
             }
             System.out.println();
@@ -41,11 +41,7 @@ public class Main {
                 case 'a':
                     addStudent(in, initializer);
                     break;
-                case 'r':
-                    System.out.println("This feature is not yet available.");
-                    System.out.println();
-                    break;
-                case 'g':
+                case 'r': // This option will be added in week 3
                     System.out.println("This feature is not yet available.");
                     System.out.println();
                     break;
@@ -180,7 +176,7 @@ public class Main {
         String group = in.nextLine();
 
         if (initializer.addStudent(new Student(firstName, lastName, birthdate, group, username, password))) {
-            System.out.println("The data was succesfully added!");
+            System.out.println("The data was successfully added!");
         }
         else {
             System.out.println("Something went wrong while trying to add the new student, try again later.");
