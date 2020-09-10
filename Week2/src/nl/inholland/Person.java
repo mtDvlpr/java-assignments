@@ -27,14 +27,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthdate=" + birthdate +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", levelOfAccess=" + levelOfAccess +
-                '}';
+        return "Person " + firstName + " " + lastName;
     }
 }

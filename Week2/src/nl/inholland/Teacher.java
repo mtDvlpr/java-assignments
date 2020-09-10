@@ -10,4 +10,9 @@ public class Teacher extends Person {
         this.salary = salary;
         levelOfAccess = LevelOfAccess.Editor;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher " + firstName + " " + lastName;
+    }
 }

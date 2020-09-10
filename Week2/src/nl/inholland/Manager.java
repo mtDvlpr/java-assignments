@@ -8,4 +8,9 @@ public class Manager extends Person {
         super(id, firstName, lastName, birthdate, username, password);
         levelOfAccess = LevelOfAccess.Admin;
     }
+
+    @Override
+    public String toString() {
+        return "Manager " + firstName + " " + lastName;
+    }
 }

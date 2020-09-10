@@ -10,4 +10,9 @@ public class Student extends Person {
         this.group = group;
         levelOfAccess = LevelOfAccess.Basic;
     }
+
+    @Override
+    public String toString() {
+        return "Student " + firstName + " " + lastName;
+    }
 }

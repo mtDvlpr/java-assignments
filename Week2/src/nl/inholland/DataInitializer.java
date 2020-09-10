@@ -11,13 +11,14 @@ public class DataInitializer {
     List<Person> persons;
 
     public DataInitializer() throws FileNotFoundException {
+        persons = new ArrayList<>();
         readStudents();
         readTeachers();
         readManagers();
     }
 
     private void readStudents() throws FileNotFoundException {
-        Scanner studentScanner = new Scanner(new File("src\\nl\\inholland\\Students.txt"));
+        Scanner studentScanner = new Scanner(new File("Students.txt"));
         while (studentScanner.hasNextLine()) {
             String line = studentScanner.nextLine();
             String[] studentArray = line.split(", ");
@@ -43,7 +44,7 @@ public class DataInitializer {
         while (managerScanner.hasNextLine()) {
             String line = managerScanner.nextLine();
             String[] managerArray = line.split(", ");
-            Manager manager = new Manager(Integer.parseInt(managerArray[0]), managerArray[1], managerArray[2], LocalDate.parse(managerArray[3]), managerArray[5], managerArray[6]);
+            Manager manager = new Manager(Integer.parseInt(managerArray[0]), managerArray[1], managerArray[2], LocalDate.parse(managerArray[3]), managerArray[4], managerArray[5]);
             persons.add(manager);
         }
         managerScanner.close();
