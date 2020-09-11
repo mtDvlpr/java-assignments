@@ -1,6 +1,7 @@
 package nl.inholland;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Student extends Person {
     String group;
@@ -19,6 +20,12 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student " + firstName + " " + lastName;
+        return String.format("%-5s %-15s %-15s %-15s %-5s %-5s",
+                id,
+                firstName,
+                lastName,
+                birthdate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")),
+                getAge(),
+                group);
     }
 }

@@ -1,6 +1,7 @@
 package nl.inholland;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Teacher extends Person {
     double salary;
@@ -13,6 +14,11 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher " + firstName + " " + lastName;
+        return String.format("%-5s %-15s %-15s %-15s %-5s",
+                id,
+                firstName,
+                lastName,
+                birthdate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")),
+                getAge());
     }
 }
