@@ -30,7 +30,19 @@ public class Menu {
         }
     }
 
+    public Character[] getChoices() {
+        switch (ROLE) {
+            case Admin:
+                return new Character[]{'s', 't', 'a', 'r', 'g', 'x'};
+            case Editor:
+                return new Character[]{'s', 't', 'a', 'r', 'x'};
+            default:
+                return new Character[]{'s', 't', 'x'};
+        }
+    }
+
     public void chooseMenuItem(Character choice, DataInitializer initializer, Scanner in) throws FileNotFoundException {
+        // Check which choice the user made and open the correct menu item
         switch (choice) {
             case 's':
                 MenuItem.displayStudents(initializer.getStudents());
