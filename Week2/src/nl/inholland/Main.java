@@ -58,15 +58,21 @@ public class Main {
         // Keep asking for a choice until a valid one is given
         do {
             System.out.print("Please, enter a choice: ");
-            Character choice = in.nextLine().toLowerCase().charAt(0);
+            String input = in.nextLine();
 
-            // Check if input is a valid choice and if so return it
-            for (Character c : choices) {
-                if (choice.equals(c)) {
-                    System.out.println();
-                    return choice;
+            // Check if only one character was given
+            if (input.length() == 1) {
+                Character choice = input.toLowerCase().charAt(0);
+
+                // Check if input is a valid choice and if so return it
+                for (Character c : choices) {
+                    if (choice.equals(c)) {
+                        System.out.println();
+                        return choice;
+                    }
                 }
             }
+
             // Show error message and let the loop continue
             System.out.println("Invalid choice, please try again.");
             System.out.println();
