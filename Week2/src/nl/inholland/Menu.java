@@ -53,9 +53,8 @@ public class Menu {
             case 'a':
                 MenuItem.addStudent(in, initializer);
                 break;
-            case 'r': // This option will be added in week 3
-                System.out.println("This feature is not yet available.");
-                System.out.println();
+            case 'r':
+                MenuItem.displayReports(initializer.getStudents());
                 break;
             default:
                 System.out.println();

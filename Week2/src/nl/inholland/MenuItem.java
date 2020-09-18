@@ -7,14 +7,9 @@ import java.util.Scanner;
 
 public class MenuItem {
     public static void displayStudents(List<Student> students) {
-        System.out.println("LIST OF STUDENTS");
-        System.out.println();
-        System.out.printf("%-5s %-15s %-15s %-15s %-5s %-5s",
-                "Id", "FirstName", "LastName", "Birthdate", "Age", "Group");
-        System.out.println();
-        System.out.printf("%-5s %-15s %-15s %-15s %-5s %-5s",
-                "**", "*********", "********", "*********", "***", "*****");
-        System.out.println();
+        System.out.println("LIST OF STUDENTS\n");
+        System.out.printf(Student.STUDENT_FORMAT, "Id", "FirstName", "LastName", "Birthdate", "Age", "Group");
+        System.out.printf(Student.STUDENT_FORMAT, "**", "*********", "********", "*********", "***", "*****");
         for (Student student : students) {
             System.out.println(student);
         }
@@ -22,12 +17,9 @@ public class MenuItem {
     }
 
     public static void displayTeachers(List<Teacher> teachers) {
-        System.out.println("LIST OF TEACHERS");
-        System.out.println();
-        System.out.printf("%-5s %-15s %-15s %-15s %-5s", "Id", "FirstName", "LastName", "Birthdate", "Age");
-        System.out.println();
-        System.out.printf("%-5s %-15s %-15s %-15s %-5s", "**", "*********", "********", "*********", "***");
-        System.out.println();
+        System.out.println("LIST OF TEACHERS\n");
+        System.out.printf(Teacher.TEACHER_FORMAT, "Id", "FirstName", "LastName", "Birthdate", "Age");
+        System.out.printf(Teacher.TEACHER_FORMAT, "**", "*********", "********", "*********", "***");
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
@@ -35,17 +27,20 @@ public class MenuItem {
     }
 
     public static void addStudent(Scanner in, DataInitializer initializer) {
-        System.out.println("ADD STUDENT");
-        System.out.println();
+        System.out.println("ADD STUDENT\n");
 
         System.out.print("Choose a username: ");
         String username = in.nextLine();
+
         System.out.print("Choose a password: ");
         String password = in.nextLine();
+
         System.out.print("Enter a first name: ");
         String firstName = in.nextLine();
+
         System.out.print("Enter a last name: ");
         String lastName = in.nextLine();
+
         LocalDate birthdate = LocalDate.now();
         boolean invalidDate = true;
         do {
@@ -65,10 +60,21 @@ public class MenuItem {
         String group = in.nextLine();
 
         if (initializer.addStudent(new Student(firstName, lastName, birthdate, group, username, password))) {
-            System.out.println("The data was successfully added!");
+            System.out.println("The data was successfully added!\n");
         }
         else {
-            System.out.println("Something went wrong while trying to add the new student, try again later.");
+            System.out.println("Something went wrong while trying to add the new student, try again later.\n");
+        }
+    }
+
+    public static void displayReports(List<Student> students) {
+        System.out.println("LIST OF STUDENT REPORTS\n");
+        System.out.printf(Student.REPORT_FORMAT,
+                "Id", "FirstName", "LastName", "Birthdate", "Age", "Group", "Java", "CSharp", "Python", "PHP");
+        System.out.printf(Student.REPORT_FORMAT,
+                "**", "*********", "********", "*********", "***", "*****", "****", "******", "******", "***");
+        for (Student student : students) {
+            System.out.println(student.showStudentReport());
         }
         System.out.println();
     }

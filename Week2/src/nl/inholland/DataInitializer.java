@@ -7,8 +7,10 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class DataInitializer {
     private List<Person> persons;
@@ -30,6 +32,7 @@ public class DataInitializer {
             String line = studentScanner.nextLine();
             String[] studentArray = line.split(", ");
             Student student = new Student(Integer.parseInt(studentArray[0]), studentArray[1], studentArray[2], LocalDate.parse(studentArray[3]), studentArray[4], studentArray[5], studentArray[6]);
+            student.grades = Stream.of(Arrays.copyOfRange(studentArray, 7, studentArray.length)).mapToInt(Integer::parseInt).toArray();
             persons.add(student);
         }
         studentScanner.close();
@@ -98,14 +101,15 @@ public class DataInitializer {
     public boolean addStudent(Student student) {
         try {
             Writer w = new FileWriter("Students.txt", true);
-            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s",
+            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
                     student.id,
                     student.firstName,
                     student.lastName,
                     student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     student.group,
                     student.username,
-                    student.getPassword());
+                    student.getPassword(),
+                    0, 0, 0, 0);
             w.write(studentString);
             w.close();
             return true;
