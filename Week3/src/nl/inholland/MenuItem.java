@@ -28,7 +28,7 @@ public class MenuItem {
         System.out.println();
     }
 
-    public static void addStudent(Scanner in, DataInitializer initializer) {
+    public static void addStudent(Scanner in, DataInitializer initializer) throws FileNotFoundException {
         System.out.println("ADD STUDENT\n");
 
         System.out.print("Choose a username: ");
@@ -61,6 +61,7 @@ public class MenuItem {
         String group = in.nextLine();
 
         if (initializer.addStudent(new Student(firstName, lastName, birthdate, group, username, password))) {
+            initializer.initialize();
             System.out.println("The data was successfully added!\n");
         }
         else {
