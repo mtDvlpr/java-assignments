@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReportMenu {
-    private static final String MENU = "A. Add (Update) Report | R. Display Reports | B. Back to Main | X. Exit |\n";
-    private static final Character[] VALID_CHOICES = {'a', 'r', 'b', 'x'};
+    private static final String MENU = "A. Add (Update) Report | S. Save Report | R. Display Reports | B. Back to Main | X. Exit |\n";
+    private static final Character[] VALID_CHOICES = {'a', 'r', 's', 'b', 'x'};
 
     public static void showMenu() {
         System.out.println("\n" + MENU + "\n");
@@ -59,6 +59,9 @@ public class ReportMenu {
             case 'a':
                 addReport(in, initializer, report);
                 break;
+            case 's':
+                saveReport(initializer, report);
+                break;
             case 'r':
                 System.out.println("display Report......................");
                 break;
@@ -70,6 +73,10 @@ public class ReportMenu {
                 System.exit(0);
                 break;
         }
+    }
+
+    private static void saveReport(DataInitializer initializer, Report report) throws IOException {
+        initializer.saveReport(report);
     }
 
     private static void addReport(Scanner in, DataInitializer initializer, Report report) throws IOException {

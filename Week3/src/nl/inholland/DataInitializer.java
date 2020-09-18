@@ -1,5 +1,6 @@
 package nl.inholland;
 
+import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -9,6 +10,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.FileOutputStream;
+
+import org.apache.poi.hpsf.examples.WriteTitle;
+import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 public class DataInitializer {
     private List<Person> persons;
@@ -164,7 +172,59 @@ public class DataInitializer {
         catch (Exception e) {
             return false;
         }
+    }
 
+    public void saveReport(Report report) throws IOException {
+        //Writer w2 = new FileWriter(String.format("C:\\Users\\manoa\\Downloads\\%s %s %s.txt", report.student.id, report.student.firstName, report.student.lastName), true);
 
+        XWPFDocument document = new XWPFDocument();
+
+        try {
+            FileOutputStream output = new FileOutputStream(String.format("%s %s %s.docx", report.student.id, report.student.firstName, report.student.lastName));
+            XWPFParagraph paragraph = document.createParagraph();
+            XWPFRun run = paragraph.createRun();
+
+            run.setText("Report of student " + report.student.firstName + " " + report.student.lastName);run.addBreak();
+            run.addBreak();
+            writeShortLine(run, "Student Id:", Integer.toString(report.student.id));
+            writeShortLine(run, "First Name:", report.student.lastName);
+            writeShortLine(run, "Last Name:", report.student.firstName);
+            writeLongLine(run, "Age:", Integer.toString(report.student.getAge()));
+            writeTitle(run, "COURSES");
+            writeLongLine(run, "Java:", Integer.toString(report.java));
+            writeLongLine(run, "CSharp:", Integer.toString(report.cSharp));
+            writeLongLine(run, "Python:", Integer.toString(report.python));
+            writeLongLine(run, "PHP:", Integer.toString(report.php));
+            writeTitle(run, "RESULTS");
+            writeLongLine(run, "Results:", report.retakes() == 0 ? "Passed" : "Not Passed");
+            writeShortLine(run, "Retakes:", Integer.toString(report.retakes()));
+
+            document.write(output);
+            output.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeShortLine(XWPFRun run, String text, String value) {
+        run.setText(text);
+        run.addTab();run.addTab();
+        run.setText(value);
+        run.addBreak();
+    }
+
+    private void writeLongLine(XWPFRun run, String text, String value) {
+        run.setText(text);
+        run.addTab(); run.addTab(); run.addTab();
+        run.setText(value);
+        run.addBreak();
+    }
+
+    private void writeTitle(XWPFRun run, String text) {
+        run.addBreak();
+        run.addTab();
+        run.setText(text);
+        run.addBreak(); run.addBreak();
     }
 }

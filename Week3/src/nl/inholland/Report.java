@@ -19,7 +19,7 @@ public class Report {
         this.php = php;
     }
 
-    private int retakes() {
+    public int retakes() {
         int retakes = 0;
         for (int grade : new int[]{java, cSharp, python, php}) {
             if (grade < 55) {
