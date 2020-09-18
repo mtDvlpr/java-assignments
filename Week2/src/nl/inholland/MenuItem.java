@@ -1,5 +1,6 @@
 package nl.inholland;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -67,25 +68,25 @@ public class MenuItem {
         }
     }
 
-    public static void displayReports(List<Student> students, Scanner in) {
+    public static void displayReports(DataInitializer initializer, Scanner in) throws FileNotFoundException {
         List<Integer> ids = new ArrayList<>();
         System.out.println("LIST OF STUDENT REPORTS\n");
-        System.out.printf(Student.REPORT_FORMAT + "\n",
+        System.out.printf(Report.REPORT_FORMAT + "\n",
                 "Id", "FirstName", "LastName", "Birthdate", "Age", "Group", "Java", "CSharp", "Python", "PHP");
-        System.out.printf(Student.REPORT_FORMAT + "\n",
+        System.out.printf(Report.REPORT_FORMAT + "\n",
                 "**", "*********", "********", "*********", "***", "*****", "****", "******", "******", "***");
-        for (Student student : students) {
-            System.out.println(student.showStudentReport());
+        for (Student student : initializer.getStudents()) {
+            System.out.println(initializer.getReportForStudent(student).showStudentWithGrades());
             ids.add(student.id);
         }
         System.out.println();
         int choice = enterChoice(ids, in);
         Student student;
         if (choice != 0) {
-            for (Student s : students) {
+            for (Student s : initializer.getStudents()) {
                 if (choice == s.id) {
                     student = s;
-                    student.showReport();
+                    System.out.println(initializer.getReportForStudent(student));
                 }
             }
         }

@@ -1,7 +1,6 @@
 package nl.inholland;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -55,7 +54,7 @@ public class Menu {
                 MenuItem.addStudent(in, initializer);
                 break;
             case 'r':
-                MenuItem.displayReports(initializer.getStudents(), in);
+                MenuItem.displayReports(initializer, in);
                 break;
             default:
                 System.out.println("\nLeaving the program now ...");

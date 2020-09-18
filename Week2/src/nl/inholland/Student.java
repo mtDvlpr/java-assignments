@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Student extends Person {
     static final String STUDENT_FORMAT = "%-5s %-15s %-15s %-15s %-5s %-10s";
-    static final String REPORT_FORMAT = STUDENT_FORMAT + " %-10s %-10s %-10s %-10s";
+
     String group;
     int[] grades;
 
@@ -23,7 +23,7 @@ public class Student extends Person {
         levelOfAccess = LevelOfAccess.Basic;
     }
 
-    private int retakes() {
+    /*private int retakes() {
         int retakes = 0;
         for (int grade : grades) {
             if (grade < 55) {
@@ -50,18 +50,7 @@ public class Student extends Person {
         System.out.printf("\n%-10s\n", "RESULTS");
         System.out.printf("\nResult: %-10s\n", retakes() == 0 ? "Passed" : "Not Passed");
         System.out.printf("Retakes: %-10s\n", retakes());
-    }
-
-    public String showStudentReport() {
-        return String.format(REPORT_FORMAT,
-                id,
-                firstName,
-                lastName,
-                birthdate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")),
-                getAge(),
-                group,
-                grades[0], grades[1], grades[2], grades[3]);
-    }
+    }*/
 
     @Override
     public String toString() {

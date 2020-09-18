@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 public class DataInitializer {
     private List<Person> persons;
+    private List<Report> reports;
 
     public DataInitializer() throws FileNotFoundException {
         initialize();
@@ -21,9 +22,11 @@ public class DataInitializer {
 
     private void initialize() throws FileNotFoundException {
         persons = new ArrayList<>();
+        reports = new ArrayList<>();
         readStudents();
         readTeachers();
         readManagers();
+        readReports();
     }
 
     private void readStudents() throws FileNotFoundException {
@@ -60,6 +63,17 @@ public class DataInitializer {
         managerScanner.close();
     }
 
+    private void readReports() throws FileNotFoundException {
+        Scanner reportScanner = new Scanner(new File("Reports.txt"));
+        while (reportScanner.hasNextLine()) {
+            String line = reportScanner.nextLine();
+            String[] reportArray = line.split(", ");
+            Report report = new Report(getStudentById(Integer.parseInt(reportArray[0])), Integer.parseInt(reportArray[1]), Integer.parseInt(reportArray[2]), Integer.parseInt(reportArray[3]), Integer.parseInt(reportArray[4]));
+            reports.add(report);
+        }
+        reportScanner.close();
+    }
+
     public List<Person> getPersons() throws FileNotFoundException {
         initialize();
         return persons;
@@ -76,13 +90,13 @@ public class DataInitializer {
         return students;
     }
 
-    public List<Integer> getStudentIds() throws FileNotFoundException {
-        List<Integer> ids = new ArrayList<>();
+    private Student getStudentById(int id) throws FileNotFoundException {
         for (Student student : getStudents()) {
-            ids.add(student.id);
+            if (student.id == id) {
+                return student;
+            }
         }
-
-        return ids;
+        return null;
     }
 
     public List<Teacher> getTeachers() throws FileNotFoundException {
@@ -96,15 +110,13 @@ public class DataInitializer {
         return teachers;
     }
 
-    public List<Manager> getManagers() throws FileNotFoundException {
-        initialize();
-        List<Manager> managers = new ArrayList<>();
-        for (Person person : persons) {
-            if (person instanceof Manager) {
-                managers.add((Manager)person);
+    public Report getReportForStudent(Student student) {
+        for (Report report : reports) {
+            if (report.student.equals(student)) {
+                return report;
             }
         }
-        return managers;
+        return null;
     }
 
     public boolean addStudent(Student student) {
