@@ -43,33 +43,33 @@ public class Report {
 
     @Override
     public String toString() {
-        return String.format("" +
+        return String.format("\n" +
                         "Report of student %s %s\n\n" +
-                        "Student Id: %-10s\n" +
-                        "First Name: %-10s\n" +
-                        "Last Name: %-10s\n" +
-                        "Age: %-10s\n\n" +
-                        "%-10s\n\n" +
-                        "Java: %-10s\n" +
-                        "CSharp: %-10s\n" +
-                        "Python: %-10s\n" +
-                        "PHP: %-10s\n\n" +
-                        "%-10s\n\n" +
-                        "Result: %-10s\n" +
-                        "Retakes: %-10s\n",
+                        "%-20s %s\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n\n" +
+                        "%15s\n\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n\n" +
+                        "%15s\n\n" +
+                        "%-20s %s\n" +
+                        "%-20s %s\n",
                 student.firstName,
                 student.lastName,
-                student.id,
-                student.firstName,
-                student.lastName,
-                student.getAge(),
+                "Student Id:", student.id,
+                "First Name:", student.firstName,
+                "Last Name:", student.lastName,
+                "Age:", student.getAge(),
                 "COURSES",
-                java,
-                cSharp,
-                python,
-                php,
+                "Java:", java,
+                "CSharp:", cSharp,
+                "Python:", python,
+                "PHP:", php,
                 "RESULTS",
-                retakes() == 0 ? "Passed" : "Not Passed",
-                retakes());
+                "Results:", retakes() == 0 ? "Passed" : "Not Passed",
+                "Retakes:", retakes());
     }
 }

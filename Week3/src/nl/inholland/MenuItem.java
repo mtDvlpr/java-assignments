@@ -81,6 +81,7 @@ public class MenuItem {
             ids.add(student.id);
         }
         System.out.println();
+
         int choice = enterChoice(ids, in);
         Student student;
         if (choice != 0) {
