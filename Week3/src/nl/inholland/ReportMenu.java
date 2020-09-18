@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ReportMenu {
     private static final String MENU = "A. Add (Update) Report | S. Save Report | R. Display Reports | B. Back to Main | X. Exit |\n";
-    private static final Character[] VALID_CHOICES = {'a', 'r', 's', 'b', 'x'};
+    public static final Character[] VALID_CHOICES = {'a', 'r', 's', 'b', 'x'};
 
     public static void showMenu() {
         System.out.println("\n" + MENU + "\n");
@@ -28,7 +28,7 @@ public class ReportMenu {
         return ids;
     }
 
-    public static Character enterChoice(Scanner in, String message) {
+    public static Character enterChoice(Character[] choices, Scanner in, String message) {
         // Keep asking for a choice until a valid one is given
         do {
             System.out.print(message);
@@ -39,7 +39,7 @@ public class ReportMenu {
                 Character choice = input.toLowerCase().charAt(0);
 
                 // Check if input is a valid choice and if so return it
-                for (Character c : VALID_CHOICES) {
+                for (Character c : choices) {
                     if (choice.equals(c)) {
                         System.out.println();
                         return choice;
@@ -63,7 +63,7 @@ public class ReportMenu {
                 saveReport(in, initializer, report);
                 break;
             case 'r':
-                System.out.println("display Report......................");
+                System.out.println("Display Reports......................");
                 break;
             case 'b':
                 System.out.println();
@@ -77,7 +77,7 @@ public class ReportMenu {
 
     private static void saveReport(Scanner in, DataInitializer initializer, Report report) throws IOException {
         initializer.saveReport(report);
-        chooseMenuItem(enterChoice(in, "Select a menu: "), initializer, in, report);
+        chooseMenuItem(enterChoice(VALID_CHOICES, in, "Select a menu: "), initializer, in, report);
     }
 
     private static void addReport(Scanner in, DataInitializer initializer, Report report) throws IOException {
@@ -95,7 +95,7 @@ public class ReportMenu {
             System.out.println("Something went wrong while trying to update the report, try again later.");
         }
 
-        chooseMenuItem(enterChoice(in, "Select a menu: "), initializer, in, report);
+        chooseMenuItem(enterChoice(VALID_CHOICES, in, "Select a menu: "), initializer, in, report);
     }
 
     private static int readInt(Scanner in, String message) {

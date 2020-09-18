@@ -1,6 +1,5 @@
 package nl.inholland;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +21,7 @@ public class Main {
             menu.showMenu();
 
             // Ask for a choice and let the menu open the correct menu item
-            choice = enterChoice(menu, in);
+            choice = ReportMenu.enterChoice(menu.getChoices(), in, "Please, enter a choice: ");
             menu.chooseMenuItem(choice, initializer, in);
         }
         while (!choice.equals('x'));
@@ -46,34 +45,6 @@ public class Main {
             }
             // If not found show an error message and let the loop continue
             System.out.println("Invalid login credentials, try again.\n");
-        }
-        while (true);
-    }
-
-    private static Character enterChoice(Menu menu, Scanner in) {
-        // Get the possible choices according to the access role
-        Character[] choices = menu.getChoices();
-
-        // Keep asking for a choice until a valid one is given
-        do {
-            System.out.print("Please, enter a choice: ");
-            String input = in.nextLine();
-
-            // Check if only one character was given
-            if (input.length() == 1) {
-                Character choice = input.toLowerCase().charAt(0);
-
-                // Check if input is a valid choice and if so return it
-                for (Character c : choices) {
-                    if (choice.equals(c)) {
-                        System.out.println();
-                        return choice;
-                    }
-                }
-            }
-
-            // Show error message and let the loop continue
-            System.out.println("Invalid choice, please try again.\n");
         }
         while (true);
     }

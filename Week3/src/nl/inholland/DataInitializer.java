@@ -1,6 +1,5 @@
 package nl.inholland;
 
-import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,10 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.io.FileOutputStream;
 
-import org.apache.poi.hpsf.examples.WriteTitle;
-import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -174,7 +170,7 @@ public class DataInitializer {
         }
     }
 
-    public void saveReport(Report report) throws IOException {
+    public void saveReport(Report report) {
         XWPFDocument document = new XWPFDocument();
 
         try {

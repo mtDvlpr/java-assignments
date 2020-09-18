@@ -85,7 +85,7 @@ public class MenuItem {
                     }
                 }
                 ReportMenu.showMenu();
-                Character choice = ReportMenu.enterChoice(in, "Please, enter a choice: Select a menu: ");
+                Character choice = ReportMenu.enterChoice(ReportMenu.VALID_CHOICES, in, "Please, enter a choice: Select a menu: ");
                 if (choice.equals('b')) { return; }
                 ReportMenu.chooseMenuItem(choice, initializer, in, report);
             }
