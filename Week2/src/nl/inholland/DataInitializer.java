@@ -76,6 +76,15 @@ public class DataInitializer {
         return students;
     }
 
+    public List<Integer> getStudentIds() throws FileNotFoundException {
+        List<Integer> ids = new ArrayList<>();
+        for (Student student : getStudents()) {
+            ids.add(student.id);
+        }
+
+        return ids;
+    }
+
     public List<Teacher> getTeachers() throws FileNotFoundException {
         initialize();
         List<Teacher> teachers = new ArrayList<>();

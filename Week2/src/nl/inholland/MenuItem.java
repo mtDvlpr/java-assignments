@@ -2,6 +2,7 @@ package nl.inholland;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -66,7 +67,8 @@ public class MenuItem {
         }
     }
 
-    public static void displayReports(List<Student> students) {
+    public static void displayReports(List<Student> students, Scanner in) {
+        List<Integer> ids = new ArrayList<>();
         System.out.println("LIST OF STUDENT REPORTS\n");
         System.out.printf(Student.REPORT_FORMAT + "\n",
                 "Id", "FirstName", "LastName", "Birthdate", "Age", "Group", "Java", "CSharp", "Python", "PHP");
@@ -74,9 +76,48 @@ public class MenuItem {
                 "**", "*********", "********", "*********", "***", "*****", "****", "******", "******", "***");
         for (Student student : students) {
             System.out.println(student.showStudentReport());
+            ids.add(student.id);
         }
         System.out.println();
-        System.out.print("Enter student id (Report Details) | Or 0 back to main menu: ");
+        int choice = enterChoice(ids, in);
+        Student student;
+        if (choice != 0) {
+            for (Student s : students) {
+                if (choice == s.id) {
+                    student = s;
+                    student.showReport();
+                }
+            }
+        }
+        System.out.println();
+    }
 
+    private static int enterChoice(List<Integer> choices, Scanner in) {
+        // Keep asking for a choice until a valid one is given
+        do {
+            System.out.print("Enter student id (Report Details) | Or 0 back to main menu: ");
+            String input = in.nextLine();
+
+            if (tryParseInt(input)) {
+                int choice = Integer.parseInt(input);
+
+                if (choices.contains(choice) || choice == 0) {
+                    return choice;
+                }
+            }
+
+            // Show error message and let the loop continue
+            System.out.println("Invalid choice, please try again.\n");
+        }
+        while (true);
+    }
+
+    private static boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
