@@ -8,3 +8,4 @@
 8, Mark, Lopez, 1996-12-09, IT-02-A, mark, mark12
 9, Debora, Hernandez, 1995-02-25, IT-02-A, debora, hernandez
 10, Rick, Moore, 2000-03-16, IT-02-A, rick, rickmoore
+17, Paul, Smith, 1998-12-23, IT_02_B, paul, paul12

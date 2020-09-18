@@ -1,9 +1,9 @@
 package nl.inholland;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.Writer;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -71,11 +71,11 @@ public class DataInitializer {
         reportScanner.close();
     }
 
-    public List<Person> getPersons() throws FileNotFoundException {
+    public List<Person> getPersons() {
         return persons;
     }
 
-    public List<Student> getStudents() throws FileNotFoundException {
+    public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Student) {
@@ -85,7 +85,7 @@ public class DataInitializer {
         return students;
     }
 
-    private Student getStudentById(int id) throws FileNotFoundException {
+    private Student getStudentById(int id) {
         for (Student student : getStudents()) {
             if (student.id == id) {
                 return student;
@@ -94,7 +94,7 @@ public class DataInitializer {
         return null;
     }
 
-    public List<Teacher> getTeachers() throws FileNotFoundException {
+    public List<Teacher> getTeachers() {
         List<Teacher> teachers = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Teacher) {
@@ -104,7 +104,7 @@ public class DataInitializer {
         return teachers;
     }
 
-    public Report getReportForStudent(Student student) throws FileNotFoundException {
+    public Report getReportForStudent(Student student) {
         for (Report report : reports) {
             if (report.student.equals(student)) {
                 return report;
@@ -115,22 +115,56 @@ public class DataInitializer {
 
     public boolean addStudent(Student student) {
         try {
-            Writer w = new FileWriter("Students.txt", true);
-            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
+            // Save new student
+            Writer w1 = new FileWriter("Students.txt", true);
+            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s",
                     student.id,
                     student.firstName,
                     student.lastName,
                     student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     student.group,
                     student.username,
-                    student.getPassword(),
-                    0, 0, 0, 0);
-            w.write(studentString);
-            w.close();
+                    student.getPassword());
+            w1.write(studentString);
+            w1.close();
+
+            // Save new student report
+            Writer w2 = new FileWriter("Reports.txt", true);
+            String reportString = String.format("\n%s, %s, %s, %s, %s", student.id, 0, 0, 0, 0);
+            w2.write(reportString);
+            w2.close();
             return true;
         }
         catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean updateReport(Report report) {
+        try {
+            List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of("Reports.txt"), StandardCharsets.UTF_8));
+            String reportString = String.format("%s, %s, %s, %s, %s",
+                    report.student.id,
+                    report.java,
+                    report.cSharp,
+                    report.python,
+                    report.php);
+
+            for (int i = 0; i < fileContent.size(); i++) {
+                Character studentId = fileContent.get(i).charAt(0);
+                if (studentId.equals(Character.forDigit(report.student.id, 10))) {
+                    fileContent.set(i, reportString);
+                    break;
+                }
+            }
+
+            Files.write(Path.of("Reports.txt"), fileContent, StandardCharsets.UTF_8);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+
+
     }
 }

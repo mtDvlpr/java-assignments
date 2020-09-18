@@ -1,6 +1,7 @@
 package nl.inholland;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -41,7 +42,7 @@ public class Menu {
         }
     }
 
-    public void chooseMenuItem(Character choice, DataInitializer initializer, Scanner in) throws FileNotFoundException {
+    public void chooseMenuItem(Character choice, DataInitializer initializer, Scanner in) throws IOException {
         // Check which choice the user made and open the correct menu item
         switch (choice) {
             case 's':

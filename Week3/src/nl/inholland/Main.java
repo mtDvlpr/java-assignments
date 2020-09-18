@@ -1,12 +1,13 @@
 package nl.inholland;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         DataInitializer initializer = new DataInitializer();
         Scanner in = new Scanner(System.in);
 
@@ -23,7 +24,6 @@ public class Main {
             // Ask for a choice and let the menu open the correct menu item
             choice = enterChoice(menu, in);
             menu.chooseMenuItem(choice, initializer, in);
-
         }
         while (!choice.equals('x'));
     }

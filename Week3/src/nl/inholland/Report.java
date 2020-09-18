@@ -57,8 +57,7 @@ public class Report {
                         "%15s\n\n" +
                         "%-20s %s\n" +
                         "%-20s %s\n",
-                student.firstName,
-                student.lastName,
+                student.firstName, student.lastName,
                 "Student Id:", student.id,
                 "First Name:", student.firstName,
                 "Last Name:", student.lastName,

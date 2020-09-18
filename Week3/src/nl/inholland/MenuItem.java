@@ -1,9 +1,9 @@
 package nl.inholland;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -69,30 +69,29 @@ public class MenuItem {
         }
     }
 
-    public static void displayReports(DataInitializer initializer, Scanner in) throws FileNotFoundException {
-        List<Integer> ids = new ArrayList<>();
-        System.out.println("LIST OF STUDENT REPORTS\n");
-        System.out.printf(Report.REPORT_FORMAT + "\n",
-                "Id", "FirstName", "LastName", "Birthdate", "Age", "Group", "Java", "CSharp", "Python", "PHP");
-        System.out.printf(Report.REPORT_FORMAT + "\n",
-                "**", "*********", "********", "*********", "***", "*****", "****", "******", "******", "***");
-        for (Student student : initializer.getStudents()) {
-            System.out.println(initializer.getReportForStudent(student).showStudentWithGrades());
-            ids.add(student.id);
-        }
-        System.out.println();
+    public static void displayReports(DataInitializer initializer, Scanner in) throws IOException {
+        int integerChoice;
+        do {
+            List<Integer> ids = ReportMenu.displayReports(initializer);
 
-        int choice = enterChoice(ids, in);
-        Student student;
-        if (choice != 0) {
-            for (Student s : initializer.getStudents()) {
-                if (choice == s.id) {
-                    student = s;
-                    System.out.println(initializer.getReportForStudent(student));
+            integerChoice = enterChoice(ids, in);
+            Report report = null;
+            if (integerChoice != 0) {
+                for (Student s : initializer.getStudents()) {
+                    if (integerChoice == s.id) {
+                        report = initializer.getReportForStudent(s);
+                        System.out.println(report);
+                        break;
+                    }
                 }
+                ReportMenu.showMenu();
+                Character choice = ReportMenu.enterChoice(in, "Please, enter a choice: Select a menu: ");
+                if (choice.equals('b')) { return; }
+                ReportMenu.chooseMenuItem(choice, initializer, in, report);
             }
+            System.out.println();
         }
-        System.out.println();
+        while (integerChoice != 0);
     }
 
     private static int enterChoice(List<Integer> choices, Scanner in) {
@@ -101,7 +100,7 @@ public class MenuItem {
             System.out.print("Enter student id (Report Details) | Or 0 back to main menu: ");
             String input = in.nextLine();
 
-            if (tryParseInt(input)) {
+            if (ReportMenu.tryParseInt(input)) {
                 int choice = Integer.parseInt(input);
 
                 if (choices.contains(choice) || choice == 0) {
@@ -115,12 +114,5 @@ public class MenuItem {
         while (true);
     }
 
-    private static boolean tryParseInt(String value) {
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
+
 }
