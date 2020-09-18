@@ -175,12 +175,21 @@ public class DataInitializer {
     }
 
     public void saveReport(Report report) throws IOException {
-        //Writer w2 = new FileWriter(String.format("C:\\Users\\manoa\\Downloads\\%s %s %s.txt", report.student.id, report.student.firstName, report.student.lastName), true);
-
         XWPFDocument document = new XWPFDocument();
 
         try {
-            FileOutputStream output = new FileOutputStream(String.format("%s %s %s.docx", report.student.id, report.student.firstName, report.student.lastName));
+            File file  = new File(String.valueOf(String.format("Reports\\%s %s %s.docx", report.student.id, report.student.firstName, report.student.lastName)));
+            File directory = new File("Reports");
+
+            if(!directory.exists()){
+
+                directory.mkdir();
+                if(!file.exists()){
+                    file.getParentFile().mkdir();
+                    file.createNewFile();
+                }
+            }
+            FileOutputStream output = new FileOutputStream(file);
             XWPFParagraph paragraph = document.createParagraph();
             XWPFRun run = paragraph.createRun();
 
@@ -201,9 +210,11 @@ public class DataInitializer {
 
             document.write(output);
             output.close();
+
+            System.out.println("Your report was successfully saved at: " + file.getAbsolutePath());
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong while saving the report, please try again later.");
         }
     }
 

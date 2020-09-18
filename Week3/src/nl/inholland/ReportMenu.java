@@ -60,7 +60,7 @@ public class ReportMenu {
                 addReport(in, initializer, report);
                 break;
             case 's':
-                saveReport(initializer, report);
+                saveReport(in, initializer, report);
                 break;
             case 'r':
                 System.out.println("display Report......................");
@@ -75,8 +75,9 @@ public class ReportMenu {
         }
     }
 
-    private static void saveReport(DataInitializer initializer, Report report) throws IOException {
+    private static void saveReport(Scanner in, DataInitializer initializer, Report report) throws IOException {
         initializer.saveReport(report);
+        chooseMenuItem(enterChoice(in, "Select a menu: "), initializer, in, report);
     }
 
     private static void addReport(Scanner in, DataInitializer initializer, Report report) throws IOException {
