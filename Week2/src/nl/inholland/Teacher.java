@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Teacher extends Person {
-    static final String TEACHER_FORMAT = "%-5s %-15s %-15s %-15s %-5s";
     double salary;
 
     public Teacher(int id, String firstName, String lastName, LocalDate birthdate, double salary, String username, String password) {
@@ -15,7 +14,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return String.format(TEACHER_FORMAT,
+        return String.format("%-5s %-15s %-15s %-15s %-5s",
                 id,
                 firstName,
                 lastName,

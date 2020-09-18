@@ -7,14 +7,11 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class DataInitializer {
     private List<Person> persons;
-    private List<Report> reports;
 
     public DataInitializer() throws FileNotFoundException {
         initialize();
@@ -22,11 +19,9 @@ public class DataInitializer {
 
     private void initialize() throws FileNotFoundException {
         persons = new ArrayList<>();
-        reports = new ArrayList<>();
         readStudents();
         readTeachers();
         readManagers();
-        readReports();
     }
 
     private void readStudents() throws FileNotFoundException {
@@ -35,7 +30,6 @@ public class DataInitializer {
             String line = studentScanner.nextLine();
             String[] studentArray = line.split(", ");
             Student student = new Student(Integer.parseInt(studentArray[0]), studentArray[1], studentArray[2], LocalDate.parse(studentArray[3]), studentArray[4], studentArray[5], studentArray[6]);
-            student.grades = Stream.of(Arrays.copyOfRange(studentArray, 7, studentArray.length)).mapToInt(Integer::parseInt).toArray();
             persons.add(student);
         }
         studentScanner.close();
@@ -63,17 +57,6 @@ public class DataInitializer {
         managerScanner.close();
     }
 
-    private void readReports() throws FileNotFoundException {
-        Scanner reportScanner = new Scanner(new File("Reports.txt"));
-        while (reportScanner.hasNextLine()) {
-            String line = reportScanner.nextLine();
-            String[] reportArray = line.split(", ");
-            Report report = new Report(getStudentById(Integer.parseInt(reportArray[0])), Integer.parseInt(reportArray[1]), Integer.parseInt(reportArray[2]), Integer.parseInt(reportArray[3]), Integer.parseInt(reportArray[4]));
-            reports.add(report);
-        }
-        reportScanner.close();
-    }
-
     public List<Person> getPersons() throws FileNotFoundException {
         initialize();
         return persons;
@@ -90,15 +73,6 @@ public class DataInitializer {
         return students;
     }
 
-    private Student getStudentById(int id) throws FileNotFoundException {
-        for (Student student : getStudents()) {
-            if (student.id == id) {
-                return student;
-            }
-        }
-        return null;
-    }
-
     public List<Teacher> getTeachers() throws FileNotFoundException {
         initialize();
         List<Teacher> teachers = new ArrayList<>();
@@ -110,27 +84,28 @@ public class DataInitializer {
         return teachers;
     }
 
-    public Report getReportForStudent(Student student) {
-        for (Report report : reports) {
-            if (report.student.equals(student)) {
-                return report;
+    public List<Manager> getManagers() throws FileNotFoundException {
+        initialize();
+        List<Manager> managers = new ArrayList<>();
+        for (Person person : persons) {
+            if (person instanceof Manager) {
+                managers.add((Manager)person);
             }
         }
-        return null;
+        return managers;
     }
 
     public boolean addStudent(Student student) {
         try {
             Writer w = new FileWriter("Students.txt", true);
-            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
+            String studentString = String.format("\n%s, %s, %s, %s, %s, %s, %s",
                     student.id,
                     student.firstName,
                     student.lastName,
                     student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     student.group,
                     student.username,
-                    student.getPassword(),
-                    0, 0, 0, 0);
+                    student.getPassword());
             w.write(studentString);
             w.close();
             return true;

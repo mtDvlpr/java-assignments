@@ -53,11 +53,13 @@ public class Menu {
             case 'a':
                 MenuItem.addStudent(in, initializer);
                 break;
-            case 'r':
-                MenuItem.displayReports(initializer, in);
+            case 'r': // This option will be added in week 3
+                System.out.println("This feature is not yet available.");
+                System.out.println();
                 break;
             default:
-                System.out.println("\nLeaving the program now ...");
+                System.out.println();
+                System.out.println("Leaving the program now ...");
                 break;
         }
     }
