@@ -57,8 +57,7 @@ public class Menu {
                 MenuItem.displayReports(initializer.getStudents());
                 break;
             default:
-                System.out.println();
-                System.out.println("Leaving the program now ...");
+                System.out.println("\nLeaving the program now ...");
                 break;
         }
     }

@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class MenuItem {
     public static void displayStudents(List<Student> students) {
         System.out.println("LIST OF STUDENTS\n");
-        System.out.printf(Student.STUDENT_FORMAT, "Id", "FirstName", "LastName", "Birthdate", "Age", "Group");
-        System.out.printf(Student.STUDENT_FORMAT, "**", "*********", "********", "*********", "***", "*****");
+        System.out.printf(Student.STUDENT_FORMAT + "\n", "Id", "FirstName", "LastName", "Birthdate", "Age", "Group");
+        System.out.printf(Student.STUDENT_FORMAT + "\n", "**", "*********", "********", "*********", "***", "*****");
         for (Student student : students) {
             System.out.println(student);
         }
@@ -18,8 +18,8 @@ public class MenuItem {
 
     public static void displayTeachers(List<Teacher> teachers) {
         System.out.println("LIST OF TEACHERS\n");
-        System.out.printf(Teacher.TEACHER_FORMAT, "Id", "FirstName", "LastName", "Birthdate", "Age");
-        System.out.printf(Teacher.TEACHER_FORMAT, "**", "*********", "********", "*********", "***");
+        System.out.printf(Teacher.TEACHER_FORMAT + "\n", "Id", "FirstName", "LastName", "Birthdate", "Age");
+        System.out.printf(Teacher.TEACHER_FORMAT + "\n", "**", "*********", "********", "*********", "***");
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
@@ -50,8 +50,7 @@ public class MenuItem {
                 invalidDate =  false;
             }
             catch (Exception e) {
-                System.out.println("That was not a valid date, try again.");
-                System.out.println();
+                System.out.println("That was not a valid date, try again.\n");
             }
         }
         while (invalidDate);
@@ -69,13 +68,15 @@ public class MenuItem {
 
     public static void displayReports(List<Student> students) {
         System.out.println("LIST OF STUDENT REPORTS\n");
-        System.out.printf(Student.REPORT_FORMAT,
+        System.out.printf(Student.REPORT_FORMAT + "\n",
                 "Id", "FirstName", "LastName", "Birthdate", "Age", "Group", "Java", "CSharp", "Python", "PHP");
-        System.out.printf(Student.REPORT_FORMAT,
+        System.out.printf(Student.REPORT_FORMAT + "\n",
                 "**", "*********", "********", "*********", "***", "*****", "****", "******", "******", "***");
         for (Student student : students) {
             System.out.println(student.showStudentReport());
         }
         System.out.println();
+        System.out.print("Enter student id (Report Details) | Or 0 back to main menu: ");
+
     }
 }

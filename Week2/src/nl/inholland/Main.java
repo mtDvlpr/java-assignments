@@ -45,8 +45,7 @@ public class Main {
                 }
             }
             // If not found show an error message and let the loop continue
-            System.out.println("Invalid login credentials, try again.");
-            System.out.println();
+            System.out.println("Invalid login credentials, try again.\n");
         }
         while (true);
     }
@@ -74,8 +73,7 @@ public class Main {
             }
 
             // Show error message and let the loop continue
-            System.out.println("Invalid choice, please try again.");
-            System.out.println();
+            System.out.println("Invalid choice, please try again.\n");
         }
         while (true);
     }

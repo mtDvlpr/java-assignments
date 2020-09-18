@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Student extends Person {
-    static final String STUDENT_FORMAT = "%-5s %-15s %-15s %-15s %-5s %-10s\n";
-    static final String REPORT_FORMAT = "%-5s %-15s %-15s %-15s %-5s %-10s %-10s %-10s %-10s %-10s\n";
+    static final String STUDENT_FORMAT = "%-5s %-15s %-15s %-15s %-5s %-10s";
+    static final String REPORT_FORMAT = STUDENT_FORMAT + " %-10s %-10s %-10s %-10s";
     String group;
     int[] grades;
 
