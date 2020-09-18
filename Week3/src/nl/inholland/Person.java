@@ -10,7 +10,7 @@ public abstract class Person {
     protected String lastName;
     protected LocalDate birthdate;
     protected String username;
-    private String password;
+    private final String PASSWORD;
     protected LevelOfAccess levelOfAccess;
 
     public Person(String firstName, String lastName, LocalDate birthdate, String username, String password) {
@@ -19,7 +19,7 @@ public abstract class Person {
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.username = username;
-        this.password = password;
+        this.PASSWORD = password;
         nextId++;
     }
 
@@ -34,11 +34,11 @@ public abstract class Person {
     }
 
     public boolean checkPassword(String password) {
-        return this.password.equals(password);
+        return this.PASSWORD.equals(password);
     }
 
     public String getPassword() {
-        return password;
+        return PASSWORD;
     }
 
     @Override
