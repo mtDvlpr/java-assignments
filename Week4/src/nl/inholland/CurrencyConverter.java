@@ -13,16 +13,15 @@ import java.text.DecimalFormat;
 import java.text.ParsePosition;
 
 public class CurrencyConverter extends Application {
-
     @Override
     public void start(Stage window) throws Exception {
+        // Currency Rate Euro to Dollar
         final double RATE = 1.18;
 
         // Set Window properties
         window.setHeight(200);
         window.setWidth(300);
         window.setTitle("Currency Converter");
-        window.setX(100);
 
         // Set grid
         GridPane gridPane = new GridPane();
@@ -37,10 +36,12 @@ public class CurrencyConverter extends Application {
         Button convertButton = new Button("Convert Euro to Dollar");
         Label amountLabel = new Label();
 
+        // Add attributes
         makeFieldNumeric(userInput);
         userInput.setPromptText("Enter an amount...");
         convertButton.setDefaultButton(true);
 
+        // When button is clicked
         convertButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

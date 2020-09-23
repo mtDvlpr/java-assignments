@@ -1,16 +1,7 @@
 package nl.inholland;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
 
 public class App extends Application {
 
@@ -20,6 +11,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
+        // Start Currency Converter App
         CurrencyConverter converter = new CurrencyConverter();
         converter.start(window);
     }
