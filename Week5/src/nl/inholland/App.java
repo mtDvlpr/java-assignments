@@ -45,7 +45,7 @@ public class App extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 // TODO: Check if username/password are correct
-                new MainWindow();
+                new Dashboard();
             }
         });
 
