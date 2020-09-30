@@ -9,9 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
-
 public class CurrencyConverter extends Application {
     @Override
     public void start(Stage window) throws Exception {
@@ -37,7 +34,7 @@ public class CurrencyConverter extends Application {
         Label amountLabel = new Label();
 
         // Add attributes
-        makeFieldNumeric(userInput);
+        App.makeFieldNumeric(userInput);
         userInput.setPromptText("Enter an amount...");
         convertButton.setDefaultButton(true);
 
@@ -67,25 +64,5 @@ public class CurrencyConverter extends Application {
 
         // Show window
         window.show();
-    }
-
-    private static void makeFieldNumeric(TextField textField) {
-
-        DecimalFormat format = new DecimalFormat("#");
-
-        final TextFormatter<Object> decimalTextFormatter = new TextFormatter<>(change -> {
-            if (change.getControlNewText().isEmpty()) {
-                return change;
-            }
-            ParsePosition parsePosition = new ParsePosition(0);
-            Object object = format.parse(change.getControlNewText(), parsePosition);
-
-            if (object == null || parsePosition.getIndex() < change.getControlNewText().length() || change.getControlNewText().length() > 9) {
-                return null;
-            } else {
-                return change;
-            }
-        });
-        textField.setTextFormatter(decimalTextFormatter);
     }
 }
