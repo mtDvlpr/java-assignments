@@ -129,19 +129,40 @@ public class Database {
         return null;
     }
 
-    public boolean addStudent(Student student) {
-        try (Writer writer = new FileWriter("src/resources/Students.csv", true)) {
+    public boolean saveStudents(List<Student> students) {
+        try (Writer writer = new FileWriter("src/resources/Students.csv")) {
+            for (Student student : students) {
+                String studentString = String.format("%s,%s,%s,%s,%s,%s,%s\n",
+                        student.id,
+                        student.firstName,
+                        student.lastName,
+                        student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                        student.group,
+                        student.username,
+                        student.getPassword());
+                writer.write(studentString);
+            }
 
-            String studentString = String.format("\n%s,%s,%s,%s,%s,%s,%s",
-                    student.id,
-                    student.firstName,
-                    student.lastName,
-                    student.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                    student.group,
-                    student.username,
-                    student.getPassword());
-            writer.write(studentString);
-            writer.close();
+            return true;
+        } catch (IOException ioe) {
+            return false;
+        }
+    }
+
+    public boolean saveTeachers(List<Teacher> teachers) {
+        try (Writer writer = new FileWriter("src/resources/Students.csv")) {
+            for (Teacher teacher : teachers) {
+                String teacherString = String.format("%s,%s,%s,%s,%s,%s,%s\n",
+                        teacher.id,
+                        teacher.firstName,
+                        teacher.lastName,
+                        teacher.birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                        teacher.salary,
+                        teacher.username,
+                        teacher.getPassword());
+                writer.write(teacherString);
+            }
+
             return true;
         } catch (IOException ioe) {
             return false;
