@@ -1,4 +1,4 @@
-package nl.inholland;
+package nl.inholland.ui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -6,15 +6,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Dashboard {
+public class Students {
     Stage window;
 
-    public Dashboard() {
+    public Students() {
         window = new Stage();
 
         // Set Window properties

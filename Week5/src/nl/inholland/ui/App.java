@@ -1,4 +1,4 @@
-package nl.inholland;
+package nl.inholland.ui;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import nl.inholland.ui.Dashboard;
 
 public class App extends Application {
 

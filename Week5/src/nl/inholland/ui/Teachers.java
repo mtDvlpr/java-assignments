@@ -1,4 +1,4 @@
-package nl.inholland;
+package nl.inholland.ui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,10 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Students {
+public class Teachers {
     Stage window;
 
-    public Students() {
+    public Teachers() {
         window = new Stage();
 
         // Set Window properties

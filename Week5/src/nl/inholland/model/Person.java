@@ -5,13 +5,13 @@ import java.time.Period;
 
 public abstract class Person {
     private static int nextId = 1;
-    protected int id;
-    protected String firstName;
-    protected String lastName;
-    protected LocalDate birthdate;
-    protected String username;
+    public int id;
+    public String firstName;
+    public String lastName;
+    public LocalDate birthdate;
+    public String username;
     private final String PASSWORD;
-    protected LevelOfAccess levelOfAccess;
+    public LevelOfAccess levelOfAccess;
 
     public Person(String firstName, String lastName, LocalDate birthdate, String username, String password) {
         this.id = nextId;

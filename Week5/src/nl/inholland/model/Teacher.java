@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Teacher extends Person {
     static final String TEACHER_FORMAT = "%-5s %-15s %-15s %-15s %-5s";
-    double salary;
+    public double salary;
 
     public Teacher(int id, String firstName, String lastName, LocalDate birthdate, double salary, String username, String password) {
         super(id, firstName, lastName, birthdate, username, password);
