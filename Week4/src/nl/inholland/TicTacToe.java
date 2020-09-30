@@ -100,6 +100,7 @@ public class TicTacToe extends Application {
             if (!checkForWinner(buttons, "X")) {
                 doComputerMove(buttons);
                 checkForWinner(buttons, "O");
+                checkForTie(buttons);
             }
         }
     }
@@ -123,10 +124,51 @@ public class TicTacToe extends Application {
     }
 
     private boolean checkForWinner(GridPane buttons, String player) {
+        String[][] grid = new String[3][3];
+        int row = 0;
+        int col = 0;
         for (int i = 0; i < buttons.getChildren().size(); i++) {
-
+            grid[row][col] = ((Button)buttons.getChildren().get(i)).textProperty().getValue();
+            if (col == 2) {
+                row++;
+                col = 0;
+            }
+        }
+        int verticalWin = 0;
+        int horizontalWin = 0;
+        int diagonalWin = 0;
+        for (int gridRow = 0; gridRow < grid.length; gridRow++) {
+            for (int gridCol = 0; gridCol < grid[0].length; gridCol++) {
+                if (grid[row][col].equals(player)) {
+                    horizontalWin++;
+                }
+            }
+            if (horizontalWin == 3) {
+                new Alert(Alert.AlertType.INFORMATION, String.format("%s won!", player));
+                return true;
+            }
+            else {
+                horizontalWin = 0;
+            }
         }
 
         return false;
+    }
+
+    private void checkForTie(GridPane buttons) {
+        for (Node node : buttons.getChildren()) {
+            if (((Button)node).textProperty().getValue().equals("_")) {
+                return;
+            }
+        }
+        if (checkForWinner(buttons, "X") || checkForWinner(buttons, "O")) {
+            return;
+        }
+
+        new Alert(Alert.AlertType.INFORMATION, "TIE!");
+    }
+
+    private boolean buttonEquals(GridPane buttons, int index, String text) {
+        return ((Button)buttons.getChildren().get(index)).textProperty().equals(text);
     }
 }
