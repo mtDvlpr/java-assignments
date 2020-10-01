@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person_Service {
-    private Database db = new Database();
+    private final Database db = new Database();
 
     public Person validateUser(String username, String password) {
         for (Person person : db.getPersons()) {

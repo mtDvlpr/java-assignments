@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Database {
-    private List<Person> persons;
-    private List<Report> reports;
+    private final List<Person> persons;
+    private final List<Report> reports;
 
     public Database() {
         persons = new ArrayList<>();

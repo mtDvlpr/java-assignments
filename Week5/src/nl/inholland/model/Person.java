@@ -10,7 +10,7 @@ public abstract class Person {
     public String lastName;
     public LocalDate birthdate;
     public String username;
-    private String password;
+    private final String password;
     public LevelOfAccess levelOfAccess;
 
     public Person(String firstName, String lastName, LocalDate birthdate, String username, String password) {
