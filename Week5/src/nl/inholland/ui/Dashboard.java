@@ -19,8 +19,8 @@ public class Dashboard {
         window = new Stage();
 
         // Set Window properties
-        window.setHeight(200);
-        window.setWidth(300);
+        window.setHeight(800);
+        window.setWidth(1024);
         window.setTitle("Dashboard");
 
         // Set grid

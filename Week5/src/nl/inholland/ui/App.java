@@ -49,12 +49,20 @@ public class App extends Application {
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Person user = personService.validateUser(userInput.getText(), passwordInput.getText());
-                if (user != null) {
-                    new Dashboard(user);
+                if (!userInput.getText().isEmpty() && !passwordInput.getText().isEmpty()) {
+                    Person user = personService.validateUser(userInput.getText(), passwordInput.getText());
+                    if (user != null) {
+                        new Dashboard(user);
+                        window.close();
+                    }
+                    else {
+                        new Alert(Alert.AlertType.WARNING, "The username and password do not match! Try again.").show();
+                        userInput.clear();
+                        passwordInput.clear();
+                    }
                 }
                 else {
-                    new Alert(Alert.AlertType.WARNING, "The username and password do not match! Try again.");
+                    new Alert(Alert.AlertType.INFORMATION, "Please fill in a username and password.").show();
                 }
             }
         });
