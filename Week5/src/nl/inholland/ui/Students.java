@@ -5,33 +5,26 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import nl.inholland.logic.Person_Service;
 import nl.inholland.model.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Students {
-    private Stage window;
-    private final Person_Service personService;
-    private ObservableList<Student> students;
+    private final Stage window;
 
     public Students(Person user) {
         window = new Stage();
-        personService = new Person_Service();
-        students = FXCollections.observableList(personService.getStudents());
+        Person_Service personService = new Person_Service();
+        ObservableList<Student> students = FXCollections.observableList(personService.getStudents());
 
         // Set Window properties
         window.setHeight(800);
