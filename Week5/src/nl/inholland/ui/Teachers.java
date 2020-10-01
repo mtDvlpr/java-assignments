@@ -1,45 +1,87 @@
 package nl.inholland.ui;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import nl.inholland.logic.Person_Service;
+import nl.inholland.model.LevelOfAccess;
 import nl.inholland.model.Person;
+import nl.inholland.model.Student;
+import nl.inholland.model.Teacher;
+
+import java.time.LocalDate;
 
 public class Teachers {
-    Stage window;
+    private final Stage window;
 
     public Teachers(Person user) {
         window = new Stage();
+        Person_Service personService = new Person_Service();
+        ObservableList<Teacher> teachers = FXCollections.observableList(personService.getTeachers());
 
         // Set Window properties
         window.setHeight(800);
         window.setWidth(1024);
         window.setTitle("Dashboard");
 
-        // Set container
+        // Set containers
         BorderPane container = new BorderPane();
+        VBox content = new VBox(10);
+        HBox buttons = new HBox(10);
 
         // Create components
-        Label welcomeLabel = new Label(String.format("Welcome %s", user.firstName));
         MenuBar menuBar = new MenuBar();
         Menu dashboardMenu = new Menu("Dashboard");
         Menu studentsMenu = new Menu("Students");
         Menu teachersMenu = new Menu("Teachers");
 
+        Label title = new Label("Teachers");
+        TableView<Teacher> tableView = new TableView<>();
+
+        TableColumn<Teacher, Integer> idColumn = new TableColumn<>("Id");
+        idColumn.setCellValueFactory(features -> new SimpleIntegerProperty(features.getValue().id).asObject());
+
+        TableColumn<Teacher, String> firstNameColumn = new TableColumn<>("First name");
+        firstNameColumn.setCellValueFactory(features -> new SimpleStringProperty(features.getValue().firstName));
+
+        TableColumn<Teacher, String> lastNameColumn = new TableColumn<>("Last name");
+        lastNameColumn.setCellValueFactory(features -> new SimpleStringProperty(features.getValue().lastName));
+
+        TableColumn<Teacher, LocalDate> birthdateColumn = new TableColumn<>("Birth date");
+        birthdateColumn.setCellValueFactory(features -> new SimpleObjectProperty<>(features.getValue().birthdate));
+
+        TableColumn<Teacher, Integer> ageColumn = new TableColumn<>("Age");
+        ageColumn.setCellValueFactory(features -> new SimpleIntegerProperty(features.getValue().getAge()).asObject());
+
+        TableColumn<Teacher, Double> salaryColumn = new TableColumn<>("Salary");
+        salaryColumn.setCellValueFactory(features -> new SimpleObjectProperty<>(features.getValue().salary));
+
+        Button addButton = new Button("Add Teacher");
+        Button editButton = new Button("Edit Teacher");
+        Button deleteButton = new Button("Delete Teacher");
+
         // Add attributes
-        welcomeLabel.setFont(new Font(50));
+        tableView.setPlaceholder(new Label("No rows to display"));
+        content.setPadding(new Insets(10));
+        title.setFont(new Font(30));
         onAction(dashboardMenu);
         onAction(studentsMenu);
         onAction(teachersMenu);
 
         // When button is clicked
         dashboardMenu.setOnAction(actionEvent -> {
-            new Teachers(user);
+            new Dashboard(user);
             window.close();
         });
 
@@ -55,11 +97,20 @@ public class Teachers {
 
         // Add components to its container
         menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
+        if (user.levelOfAccess == LevelOfAccess.Admin) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
+        tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, salaryColumn);
+        tableView.setItems(teachers);
+
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        content.getChildren().addAll(title, tableView, buttons);
         container.setTop(menuBar);
-        container.setCenter(welcomeLabel);
+        container.setCenter(content);
 
         // Set scene
-        window.setScene(new Scene(container));
+        Scene scene = new Scene(container);
+        scene.getStylesheets().add("resources/css/style.css");
+        window.setScene(scene);
 
         // Show window
         window.show();

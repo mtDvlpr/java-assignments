@@ -1,3 +1,7 @@
+.table-view, .button {
+  -fx-font-size: 15px;
+}
+
 /* Style of entire tableView */
 .table-view{
     /*-fx-background-color: transparent;*/
@@ -25,7 +29,7 @@
     /*-fx-background-color: transparent;
     -fx-font-weight:bold;
     -fx-text-fill: white;*/
-    -fx-font-size: 20px;
+    /*-fx-font-size: 15px;*?
 }
 
 /* Style of each column in the tableView */
@@ -37,7 +41,7 @@
 /* Style of each table cell */
   .table-view .table-cell{
       /*-fx-font-weight:bold;*/
-      -fx-font-size:20px;
+      /*-fx-font-size:15px;*/
       /*-fx-text-fill:orange;*/
 
   }

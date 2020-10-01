@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.inholland.logic.Person_Service;
+import nl.inholland.model.LevelOfAccess;
 import nl.inholland.model.Person;
 import nl.inholland.model.Student;
 
@@ -78,7 +79,7 @@ public class Students {
 
         // When button is clicked
         dashboardMenu.setOnAction(actionEvent -> {
-            new Students(user);
+            new Dashboard(user);
             window.close();
         });
 
@@ -94,7 +95,7 @@ public class Students {
 
         // Add components to its container
         menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
-        buttons.getChildren().addAll(addButton, editButton, deleteButton);
+        if (user.levelOfAccess != LevelOfAccess.Basic) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, groupColumn);
         tableView.setItems(students);
 
@@ -106,7 +107,7 @@ public class Students {
 
         // Set scene
         Scene scene = new Scene(container);
-        scene.getStylesheets().add("resources/style.css");
+        scene.getStylesheets().add("resources/css/style.css");
         window.setScene(scene);
 
         // Show window
