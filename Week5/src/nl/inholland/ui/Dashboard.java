@@ -3,12 +3,13 @@ package nl.inholland.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.inholland.model.*;
 
@@ -23,38 +24,65 @@ public class Dashboard {
         window.setWidth(1024);
         window.setTitle("Dashboard");
 
-        // Set grid
-        GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(10));
-        gridPane.setVgap(10);
-        gridPane.setHgap(8);
+        // Set container
+        BorderPane container = new BorderPane();
 
         // Create components
-        Label testLabel = new Label("Label");
-        TextField testInput = new TextField();
-        Button testButton = new Button("Button");
+        Label welcomeLabel = new Label(String.format("Welcome %s", user.firstName));
+        MenuBar menuBar = new MenuBar();
+        Menu dashboardMenu = new Menu("Dashboard");
+        Menu studentsMenu = new Menu("Students");
+        Menu teachersMenu = new Menu("Teachers");
 
         // Add attributes
-        testInput.setPromptText("TextField");
-        testButton.setDefaultButton(true);
+        welcomeLabel.setFont(new Font(50));
+        onAction(dashboardMenu);
+        onAction(studentsMenu);
+        onAction(teachersMenu);
 
         // When button is clicked
-        testButton.setOnAction(new EventHandler<ActionEvent>() {
+        dashboardMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                // some code
+                new Dashboard(user);
+                window.close();
             }
         });
 
-        // Add components to grid
-        gridPane.add(testLabel, 0,0);
-        gridPane.add(testInput, 0, 1);
-        gridPane.add(testButton, 1, 0);
+        studentsMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                new Students();
+                window.close();
+            }
+        });
+
+        teachersMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                new Teachers();
+                window.close();
+            }
+        });
+
+        // Add components to its container
+        menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
+        container.setTop(menuBar);
+        container.setCenter(welcomeLabel);
 
         // Set scene
-        window.setScene(new Scene(gridPane));
+        window.setScene(new Scene(container));
 
         // Show window
         window.show();
+    }
+
+    public static void onAction(Menu menu)
+    {
+        final MenuItem menuItem = new MenuItem();
+
+        menu.getItems().add(menuItem);
+        menu.addEventHandler(Menu.ON_SHOWN, event -> menu.hide());
+        menu.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());
     }
 }
