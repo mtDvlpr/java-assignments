@@ -27,7 +27,7 @@ public class Database {
     }
 
     private void readStudents() {
-        try(Scanner studentScanner = new Scanner(new File("src/resources/Students.csv"))) {
+        try(Scanner studentScanner = new Scanner(new File("src/resources/students.csv"))) {
             while (true) {
                 try {
                     String line = studentScanner.nextLine();
@@ -45,7 +45,7 @@ public class Database {
     }
 
     private void readTeachers() {
-        try(Scanner teacherScanner = new Scanner(new File("src/resources/Teachers.csv"))) {
+        try(Scanner teacherScanner = new Scanner(new File("src/resources/teachers.csv"))) {
             while (true) {
                 try {
                     String line = teacherScanner.nextLine();
@@ -63,7 +63,7 @@ public class Database {
     }
 
     private void readManagers() {
-        try(Scanner ManagerScanner = new Scanner(new File("src/resources/Managers.csv"))) {
+        try(Scanner ManagerScanner = new Scanner(new File("src/resources/managers.csv"))) {
             while (true) {
                 try {
                     String line = ManagerScanner.nextLine();
@@ -98,17 +98,9 @@ public class Database {
         }
     }
 
-    public List<Person> getPersons() { return persons; }
+    public List<Report> getReports() { return reports; }
 
-    public List<Teacher> getTeachers() {
-        List<Teacher> teachers = new ArrayList<>();
-        for (Person person : persons) {
-            if (person instanceof Teacher) {
-                teachers.add((Teacher)person);
-            }
-        }
-        return teachers;
-    }
+    public List<Person> getPersons() { return persons; }
 
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
@@ -120,7 +112,7 @@ public class Database {
         return students;
     }
 
-    private Student getStudentById(int id) {
+    public Student getStudentById(int id) {
         for (Student student : getStudents()) {
             if (student.id == id) {
                 return student;
@@ -130,7 +122,7 @@ public class Database {
     }
 
     public boolean saveStudents(List<Student> students) {
-        try (Writer writer = new FileWriter("src/resources/Students.csv")) {
+        try (Writer writer = new FileWriter("src/resources/students.csv")) {
             for (Student student : students) {
                 String studentString = String.format("%s,%s,%s,%s,%s,%s,%s\n",
                         student.id,
@@ -150,7 +142,7 @@ public class Database {
     }
 
     public boolean saveTeachers(List<Teacher> teachers) {
-        try (Writer writer = new FileWriter("src/resources/Students.csv")) {
+        try (Writer writer = new FileWriter("src/resources/students.csv")) {
             for (Teacher teacher : teachers) {
                 String teacherString = String.format("%s,%s,%s,%s,%s,%s,%s\n",
                         teacher.id,

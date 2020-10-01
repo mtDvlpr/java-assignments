@@ -8,9 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import nl.inholland.logic.Person_Service;
+import nl.inholland.model.*;
 import nl.inholland.ui.Dashboard;
 
 public class App extends Application {
+    private Person_Service personService = new Person_Service();
 
     public static void main(String[] args) {
         launch(args);
@@ -18,6 +21,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
+
         // Set Window properties
         window.setHeight(200);
         window.setWidth(300);
@@ -45,8 +49,13 @@ public class App extends Application {
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                // TODO: Check if username/password are correct
-                new Dashboard();
+                Person user = personService.validateUser(userInput.getText(), passwordInput.getText());
+                if (user != null) {
+                    new Dashboard(user);
+                }
+                else {
+                    new Alert(Alert.AlertType.WARNING, "The username and password do not match! Try again.");
+                }
             }
         });
 

@@ -10,17 +10,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import nl.inholland.model.*;
 
 public class Dashboard {
     Stage window;
 
-    public Dashboard() {
+    public Dashboard(Person user) {
         window = new Stage();
 
         // Set Window properties
         window.setHeight(200);
         window.setWidth(300);
-        window.setTitle("Title");
+        window.setTitle("Dashboard");
 
         // Set grid
         GridPane gridPane = new GridPane();
