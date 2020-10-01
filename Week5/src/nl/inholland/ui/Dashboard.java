@@ -1,14 +1,8 @@
 package nl.inholland.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.inholland.model.*;
@@ -41,28 +35,19 @@ public class Dashboard {
         onAction(teachersMenu);
 
         // When button is clicked
-        dashboardMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Dashboard(user);
-                window.close();
-            }
+        dashboardMenu.setOnAction(actionEvent -> {
+            new Dashboard(user);
+            window.close();
         });
 
-        studentsMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Students();
-                window.close();
-            }
+        studentsMenu.setOnAction(actionEvent -> {
+            new Students(user);
+            window.close();
         });
 
-        teachersMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Teachers();
-                window.close();
-            }
+        teachersMenu.setOnAction(actionEvent -> {
+            new Teachers(user);
+            window.close();
         });
 
         // Add components to its container

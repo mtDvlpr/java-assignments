@@ -40,28 +40,19 @@ public class Students {
         onAction(teachersMenu);
 
         // When button is clicked
-        dashboardMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Students(user);
-                window.close();
-            }
+        dashboardMenu.setOnAction(actionEvent -> {
+            new Students(user);
+            window.close();
         });
 
-        studentsMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Students();
-                window.close();
-            }
+        studentsMenu.setOnAction(actionEvent -> {
+            new Students(user);
+            window.close();
         });
 
-        teachersMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Teachers();
-                window.close();
-            }
+        teachersMenu.setOnAction(actionEvent -> {
+            new Teachers(user);
+            window.close();
         });
 
         // Add components to its container

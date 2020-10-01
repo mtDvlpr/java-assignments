@@ -1,7 +1,5 @@
 package nl.inholland.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -40,28 +38,19 @@ public class Teachers {
         onAction(teachersMenu);
 
         // When button is clicked
-        dashboardMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Teachers(user);
-                window.close();
-            }
+        dashboardMenu.setOnAction(actionEvent -> {
+            new Teachers(user);
+            window.close();
         });
 
-        studentsMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Students();
-                window.close();
-            }
+        studentsMenu.setOnAction(actionEvent -> {
+            new Students(user);
+            window.close();
         });
 
-        teachersMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Teachers();
-                window.close();
-            }
+        teachersMenu.setOnAction(actionEvent -> {
+            new Teachers(user);
+            window.close();
         });
 
         // Add components to its container
