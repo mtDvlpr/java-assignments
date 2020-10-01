@@ -29,7 +29,7 @@
     /*-fx-background-color: transparent;
     -fx-font-weight:bold;
     -fx-text-fill: white;*/
-    /*-fx-font-size: 15px;*?
+    /*-fx-font-size: 15px;*/
 }
 
 /* Style of each column in the tableView */
@@ -62,7 +62,7 @@
 }
 
 
-/* Style of each entire row in the table view* /
+/* Style of each entire row in the table view */
   .table-row-cell:selected {
       /* -fx-border-color:transparent firebrick transparent firebrick  ;
        -fx-border-width:2.0; */

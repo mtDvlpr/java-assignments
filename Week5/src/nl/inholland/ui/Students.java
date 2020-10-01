@@ -31,7 +31,7 @@ public class Students {
         // Set Window properties
         window.setHeight(800);
         window.setWidth(1024);
-        window.setTitle("Dashboard");
+        window.setTitle("Students");
 
         // Set containers
         BorderPane container = new BorderPane();
@@ -90,6 +90,11 @@ public class Students {
 
         teachersMenu.setOnAction(actionEvent -> {
             new Teachers(user);
+            window.close();
+        });
+
+        addButton.setOnAction(actionEvent -> {
+            new AddStudent(user);
             window.close();
         });
 

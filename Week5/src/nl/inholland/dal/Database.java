@@ -5,10 +5,7 @@ import nl.inholland.model.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Database {
     private final List<Person> persons;
@@ -63,10 +60,10 @@ public class Database {
     }
 
     private void readManagers() {
-        try(Scanner ManagerScanner = new Scanner(new File("src/resources/managers.csv"))) {
+        try(Scanner managerScanner = new Scanner(new File("src/resources/managers.csv"))) {
             while (true) {
                 try {
-                    String line = ManagerScanner.nextLine();
+                    String line = managerScanner.nextLine();
                     String[] managerArray = line.split(",");
                     Manager manager = new Manager(Integer.parseInt(managerArray[0]), managerArray[1], managerArray[2], LocalDate.parse(managerArray[3]), managerArray[4], managerArray[5]);
                     persons.add(manager);
@@ -77,6 +74,17 @@ public class Database {
             }
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
+        }
+    }
+
+    public List<String> getGroups() {
+        try(Scanner groupScanner = new Scanner(new File("src/resources/groups.csv"))) {
+            String line = groupScanner.nextLine();
+            String[] groups = line.split(",");
+            return Arrays.asList(groups);
+        } catch (FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+            return null;
         }
     }
 

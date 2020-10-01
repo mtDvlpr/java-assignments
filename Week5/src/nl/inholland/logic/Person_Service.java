@@ -21,6 +21,8 @@ public class Person_Service {
         return null;
     }
 
+    public List<String> getGroups() { return db.getGroups(); }
+
     public List<Person> getPersons() {
         return db.getPersons();
     }

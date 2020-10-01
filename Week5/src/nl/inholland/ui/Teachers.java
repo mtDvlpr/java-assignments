@@ -1,6 +1,5 @@
 package nl.inholland.ui;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,7 +16,6 @@ import javafx.stage.Stage;
 import nl.inholland.logic.Person_Service;
 import nl.inholland.model.LevelOfAccess;
 import nl.inholland.model.Person;
-import nl.inholland.model.Student;
 import nl.inholland.model.Teacher;
 
 import java.time.LocalDate;
@@ -33,7 +31,7 @@ public class Teachers {
         // Set Window properties
         window.setHeight(800);
         window.setWidth(1024);
-        window.setTitle("Dashboard");
+        window.setTitle("Teachers");
 
         // Set containers
         BorderPane container = new BorderPane();
