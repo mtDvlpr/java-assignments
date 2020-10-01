@@ -22,6 +22,8 @@ public class Person_Service {
         return db.getPersons();
     }
 
+    public List<Student> getStudents() { return db.getStudents(); }
+
     public List<Teacher> getTeachers() {
         List<Teacher> teachers = new ArrayList<>();
         for (Person person : db.getPersons()) {
