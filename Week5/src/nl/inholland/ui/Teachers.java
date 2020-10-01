@@ -65,8 +65,7 @@ public class Teachers {
         window.show();
     }
 
-    public static void onAction(Menu menu)
-    {
+    public static void onAction(Menu menu) {
         final MenuItem menuItem = new MenuItem();
 
         menu.getItems().add(menuItem);

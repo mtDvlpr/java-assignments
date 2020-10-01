@@ -1,11 +1,14 @@
 package nl.inholland.ui;
 
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import nl.inholland.model.*;
+import nl.inholland.model.Person;
 
 public class Dashboard {
     Stage window;
@@ -62,8 +65,7 @@ public class Dashboard {
         window.show();
     }
 
-    public static void onAction(Menu menu)
-    {
+    public static void onAction(Menu menu) {
         final MenuItem menuItem = new MenuItem();
 
         menu.getItems().add(menuItem);

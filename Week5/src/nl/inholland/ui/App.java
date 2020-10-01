@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import nl.inholland.logic.Person_Service;
-import nl.inholland.model.*;
+import nl.inholland.model.Person;
 
 public class App extends Application {
     private final Person_Service personService = new Person_Service();
@@ -49,20 +49,18 @@ public class App extends Application {
                 if (user != null) {
                     new Dashboard(user);
                     window.close();
-                }
-                else {
+                } else {
                     new Alert(Alert.AlertType.WARNING, "The username and password do not match! Try again.").show();
                     userInput.clear();
                     passwordInput.clear();
                 }
-            }
-            else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Please fill in a username and password.").show();
             }
         });
 
         // Add components to grid
-        gridPane.add(userLabel, 0,0);
+        gridPane.add(userLabel, 0, 0);
         gridPane.add(passwordLabel, 0, 1);
         gridPane.add(userInput, 1, 0);
         gridPane.add(passwordInput, 1, 1);

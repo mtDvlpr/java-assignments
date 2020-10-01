@@ -1,7 +1,10 @@
 package nl.inholland.logic;
 
-import nl.inholland.model.*;
 import nl.inholland.dal.Database;
+import nl.inholland.model.Person;
+import nl.inholland.model.Report;
+import nl.inholland.model.Student;
+import nl.inholland.model.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +25,15 @@ public class Person_Service {
         return db.getPersons();
     }
 
-    public List<Student> getStudents() { return db.getStudents(); }
+    public List<Student> getStudents() {
+        return db.getStudents();
+    }
 
     public List<Teacher> getTeachers() {
         List<Teacher> teachers = new ArrayList<>();
         for (Person person : db.getPersons()) {
             if (person instanceof Teacher) {
-                teachers.add((Teacher)person);
+                teachers.add((Teacher) person);
             }
         }
         return teachers;
