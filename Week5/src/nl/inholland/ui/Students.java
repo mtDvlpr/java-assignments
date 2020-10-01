@@ -97,7 +97,7 @@ public class Students {
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, groupColumn);
         tableView.setItems(students);
 
-        tableView.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         content.getChildren().addAll(title, tableView, buttons);
         container.setTop(menuBar);
@@ -112,8 +112,7 @@ public class Students {
         window.show();
     }
 
-    public static void onAction(Menu menu)
-    {
+    public static void onAction(Menu menu) {
         final MenuItem menuItem = new MenuItem();
 
         menu.getItems().add(menuItem);
