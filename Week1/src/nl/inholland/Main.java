@@ -8,7 +8,17 @@ public class Main {
         // Create a scanner to read user input
         Scanner in = new Scanner(System.in);
         String input;
-
+        
+        //I think bufferReader is better because as it gives better time complexity and useful in competitive programming, here is a sample code
+        /*
+         public static void main(String args[])throws Exception{    
+            InputStreamReader r=new InputStreamReader(System.in);    
+            BufferedReader br=new BufferedReader(r);  
+        }    
+        */
+        //Little bit lengthy but quite good
+        
+        
         // Ask for group size until a valid answer is given
         do {
             System.out.print("How many students are in the group? ");
