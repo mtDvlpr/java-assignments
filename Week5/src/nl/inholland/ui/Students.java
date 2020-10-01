@@ -14,7 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.inholland.logic.Person_Service;
-import nl.inholland.model.*;
+import nl.inholland.model.Person;
+import nl.inholland.model.Student;
 
 import java.time.LocalDate;
 
