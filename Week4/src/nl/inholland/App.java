@@ -1,8 +1,6 @@
 package nl.inholland;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
@@ -37,22 +35,18 @@ public class App extends Application {
     }
 
     public static void makeFieldIntegerOnly(TextField textField) {
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
 
     @Override
-    public void start(Stage window) throws Exception {
+    public void start(Stage window) {
         // Start Currency Converter App
         CurrencyConverter converter = new CurrencyConverter();
-        //converter.start(window);
+        converter.start(window);
 
         // Start Car Rental App
         CarRental carRental = new CarRental();

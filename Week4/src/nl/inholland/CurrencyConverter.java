@@ -1,8 +1,6 @@
 package nl.inholland;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,7 +12,7 @@ import javafx.stage.Stage;
 
 public class CurrencyConverter extends Application {
     @Override
-    public void start(Stage window) throws Exception {
+    public void start(Stage window) {
         // Currency Rate Euro to Dollar
         final double RATE = 1.18;
 
@@ -42,14 +40,11 @@ public class CurrencyConverter extends Application {
         convertButton.setDefaultButton(true);
 
         // When button is clicked
-        convertButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (userInput.getText().isEmpty()) {
-                    new Alert(Alert.AlertType.WARNING, "Enter an amount!").show();
-                } else {
-                    amountLabel.textProperty().setValue(String.format("%.2f", Double.parseDouble(userInput.getText()) * RATE));
-                }
+        convertButton.setOnAction(actionEvent -> {
+            if (userInput.getText().isEmpty()) {
+                new Alert(Alert.AlertType.WARNING, "Enter an amount!").show();
+            } else {
+                amountLabel.textProperty().setValue(String.format("%.2f", Double.parseDouble(userInput.getText()) * RATE));
             }
         });
 

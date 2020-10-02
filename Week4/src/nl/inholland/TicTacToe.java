@@ -17,7 +17,7 @@ import java.util.Random;
 public class TicTacToe extends Application {
 
     @Override
-    public void start(Stage window) throws Exception {
+    public void start(Stage window) {
         // Set Window properties
         window.setHeight(430);
         window.setWidth(350);

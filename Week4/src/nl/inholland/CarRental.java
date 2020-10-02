@@ -1,8 +1,6 @@
 package nl.inholland;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +12,7 @@ import javafx.stage.Stage;
 
 public class CarRental extends Application {
     @Override
-    public void start(Stage window) throws Exception {
+    public void start(Stage window) {
         // Constants
         final int PRICE_PER_DAY = 45;
         final double PRICE_PER_KM = .25;
@@ -55,21 +53,18 @@ public class CarRental extends Application {
         App.makeFieldNumeric(litersInput);
 
         // When button is clicked
-        calculateButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                double total = 0;
-                total += Integer.parseInt(daysInput.getText()) * PRICE_PER_DAY;
-                double nrOfKm = Double.parseDouble(kmsInput.getText());
-                if (nrOfKm > 100) {
-                    nrOfKm -= 100;
-                    total += nrOfKm * PRICE_PER_KM;
-                }
-                if (fuelTankFull.isSelected()) {
-                    total += Double.parseDouble(litersInput.getText()) * PRICE_PER_LITER;
-                }
-                amountLabel.textProperty().setValue(String.format("%.2f", total));
+        calculateButton.setOnAction(actionEvent -> {
+            double total = 0;
+            total += Integer.parseInt(daysInput.getText()) * PRICE_PER_DAY;
+            double nrOfKm = Double.parseDouble(kmsInput.getText());
+            if (nrOfKm > 100) {
+                nrOfKm -= 100;
+                total += nrOfKm * PRICE_PER_KM;
             }
+            if (fuelTankFull.isSelected()) {
+                total += Double.parseDouble(litersInput.getText()) * PRICE_PER_LITER;
+            }
+            amountLabel.textProperty().setValue(String.format("%.2f", total));
         });
 
         // Add components to grid
