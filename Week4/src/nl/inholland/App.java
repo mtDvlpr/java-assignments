@@ -16,21 +16,6 @@ public class App extends Application {
         launch(args);
     }
 
-    @Override
-    public void start(Stage window) throws Exception {
-        // Start Currency Converter App
-        CurrencyConverter converter = new CurrencyConverter();
-        //converter.start(window);
-
-        // Start Car Rental App
-        CarRental carRental = new CarRental();
-        carRental.start(window);
-
-        // Start Tic-tac-toe App
-        TicTacToe ticTacToe = new TicTacToe();
-        ticTacToe.start(window);
-    }
-
     public static void makeFieldNumeric(TextField textField) {
 
         DecimalFormat format = new DecimalFormat("#");
@@ -61,5 +46,20 @@ public class App extends Application {
                 }
             }
         });
+    }
+
+    @Override
+    public void start(Stage window) throws Exception {
+        // Start Currency Converter App
+        CurrencyConverter converter = new CurrencyConverter();
+        //converter.start(window);
+
+        // Start Car Rental App
+        CarRental carRental = new CarRental();
+        carRental.start(window);
+
+        // Start Tic-tac-toe App
+        TicTacToe ticTacToe = new TicTacToe();
+        ticTacToe.start(window);
     }
 }

@@ -1,15 +1,12 @@
 package nl.inholland;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,15 +65,15 @@ public class TicTacToe extends Application {
         square9.setOnAction(actionEvent -> buttonClicked(gridPane, square9));
 
         // Add components to grid
-        gridPane.add(square1, 0,0);
-        gridPane.add(square2, 1,0);
-        gridPane.add(square3, 2,0);
-        gridPane.add(square4, 0,1);
-        gridPane.add(square5, 1,1);
-        gridPane.add(square6, 2,1);
-        gridPane.add(square7, 0,2);
-        gridPane.add(square8, 1,2);
-        gridPane.add(square9, 2,2);
+        gridPane.add(square1, 0, 0);
+        gridPane.add(square2, 1, 0);
+        gridPane.add(square3, 2, 0);
+        gridPane.add(square4, 0, 1);
+        gridPane.add(square5, 1, 1);
+        gridPane.add(square6, 2, 1);
+        gridPane.add(square7, 0, 2);
+        gridPane.add(square8, 1, 2);
+        gridPane.add(square9, 2, 2);
 
         HBox turnContainer = new HBox();
         turnContainer.setPadding(new Insets(10));
@@ -107,13 +104,13 @@ public class TicTacToe extends Application {
 
     private void doComputerMove(GridPane buttons) {
         for (Node b : buttons.getChildren()) {
-            if (((Button)b).textProperty().getValue().equals("_")) {
+            if (((Button) b).textProperty().getValue().equals("_")) {
                 Random rnd = new Random();
                 int index;
                 Button btn;
                 do {
                     index = rnd.nextInt(buttons.getChildren().size());
-                    btn = (Button)buttons.getChildren().get(index);
+                    btn = (Button) buttons.getChildren().get(index);
                 }
                 while (!btn.textProperty().getValue().equals("_"));
 
@@ -128,7 +125,7 @@ public class TicTacToe extends Application {
         int row = 0;
         int col = 0;
         for (int i = 0; i < buttons.getChildren().size(); i++) {
-            grid[row][col] = ((Button)buttons.getChildren().get(i)).textProperty().getValue();
+            grid[row][col] = ((Button) buttons.getChildren().get(i)).textProperty().getValue();
             if (col == 2) {
                 row++;
                 col = 0;
@@ -146,8 +143,7 @@ public class TicTacToe extends Application {
             if (horizontalWin == 3) {
                 new Alert(Alert.AlertType.INFORMATION, String.format("%s won!", player));
                 return true;
-            }
-            else {
+            } else {
                 horizontalWin = 0;
             }
         }
@@ -157,7 +153,7 @@ public class TicTacToe extends Application {
 
     private void checkForTie(GridPane buttons) {
         for (Node node : buttons.getChildren()) {
-            if (((Button)node).textProperty().getValue().equals("_")) {
+            if (((Button) node).textProperty().getValue().equals("_")) {
                 return;
             }
         }
@@ -169,6 +165,6 @@ public class TicTacToe extends Application {
     }
 
     private boolean buttonEquals(GridPane buttons, int index, String text) {
-        return ((Button)buttons.getChildren().get(index)).textProperty().equals(text);
+        return ((Button) buttons.getChildren().get(index)).textProperty().equals(text);
     }
 }

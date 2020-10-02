@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -70,7 +73,7 @@ public class CarRental extends Application {
         });
 
         // Add components to grid
-        gridPane.add(daysLabel, 0,0);
+        gridPane.add(daysLabel, 0, 0);
         gridPane.add(kmsLabel, 0, 1);
         gridPane.add(litersLabel, 0, 3);
         gridPane.add(daysInput, 1, 0);

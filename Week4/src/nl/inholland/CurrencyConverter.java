@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -44,15 +47,14 @@ public class CurrencyConverter extends Application {
             public void handle(ActionEvent actionEvent) {
                 if (userInput.getText().isEmpty()) {
                     new Alert(Alert.AlertType.WARNING, "Enter an amount!").show();
-                }
-                else {
+                } else {
                     amountLabel.textProperty().setValue(String.format("%.2f", Double.parseDouble(userInput.getText()) * RATE));
                 }
             }
         });
 
         // Add components to grid
-        gridPane.add(euroLabel, 0,0);
+        gridPane.add(euroLabel, 0, 0);
         gridPane.add(dollarLabel, 0, 2);
         gridPane.add(userInput, 1, 0);
         gridPane.add(convertButton, 1, 1);
