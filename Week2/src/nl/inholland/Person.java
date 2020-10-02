@@ -10,8 +10,8 @@ public abstract class Person {
     protected String lastName;
     protected LocalDate birthdate;
     protected String username;
-    private String password;
     protected LevelOfAccess levelOfAccess;
+    private String password;
 
     public Person(String firstName, String lastName, LocalDate birthdate, String username, String password) {
         this.id = nextId;
@@ -26,7 +26,7 @@ public abstract class Person {
     public Person(int id, String firstName, String lastName, LocalDate birthdate, String username, String password) {
         this(firstName, lastName, birthdate, username, password);
         this.id = id;
-        nextId = id+1;
+        nextId = id + 1;
     }
 
     public int getAge() {

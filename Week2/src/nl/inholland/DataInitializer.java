@@ -67,7 +67,7 @@ public class DataInitializer {
         List<Student> students = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Student) {
-                students.add((Student)person);
+                students.add((Student) person);
             }
         }
         return students;
@@ -78,7 +78,7 @@ public class DataInitializer {
         List<Teacher> teachers = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Teacher) {
-                teachers.add((Teacher)person);
+                teachers.add((Teacher) person);
             }
         }
         return teachers;
@@ -89,7 +89,7 @@ public class DataInitializer {
         List<Manager> managers = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Manager) {
-                managers.add((Manager)person);
+                managers.add((Manager) person);
             }
         }
         return managers;
@@ -109,8 +109,7 @@ public class DataInitializer {
             w.write(studentString);
             w.close();
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
