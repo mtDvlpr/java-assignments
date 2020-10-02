@@ -46,11 +46,11 @@ public class App extends Application {
     public void start(Stage window) {
         // Start Currency Converter App
         CurrencyConverter converter = new CurrencyConverter();
-        converter.start(window);
+        //converter.start(window);
 
         // Start Car Rental App
         CarRental carRental = new CarRental();
-        carRental.start(window);
+        //carRental.start(window);
 
         // Start Tic-tac-toe App
         TicTacToe ticTacToe = new TicTacToe();
