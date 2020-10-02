@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReportMenu {
-    private static final String MENU = "A. Add (Update) Report | S. Save Report | R. Display Reports | B. Back to Main | X. Exit |\n";
     public static final Character[] VALID_CHOICES = {'a', 'r', 's', 'b', 'x'};
+    private static final String MENU = "A. Add (Update) Report | S. Save Report | R. Display Reports | B. Back to Main | X. Exit |\n";
 
     public static void showMenu() {
         System.out.println("\n" + MENU + "\n");
@@ -90,8 +90,7 @@ public class ReportMenu {
 
         if (initializer.updateReport(report)) {
             System.out.println("The report was successfully updated.");
-        }
-        else {
+        } else {
             System.out.println("Something went wrong while trying to update the report, try again later.");
         }
 

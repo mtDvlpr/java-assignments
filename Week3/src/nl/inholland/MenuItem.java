@@ -49,9 +49,8 @@ public class MenuItem {
             try {
                 System.out.print("Please enter date of birth in MM/DD/YYYY: ");
                 birthdate = LocalDate.parse(in.nextLine(), DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-                invalidDate =  false;
-            }
-            catch (Exception e) {
+                invalidDate = false;
+            } catch (Exception e) {
                 System.out.println("That was not a valid date, try again.\n");
             }
         }
@@ -63,8 +62,7 @@ public class MenuItem {
         if (initializer.addStudent(new Student(firstName, lastName, birthdate, group, username, password))) {
             initializer.initialize();
             System.out.println("The data was successfully added!\n");
-        }
-        else {
+        } else {
             System.out.println("Something went wrong while trying to add the new student, try again later.\n");
         }
     }
@@ -86,7 +84,9 @@ public class MenuItem {
                 }
                 ReportMenu.showMenu();
                 Character choice = ReportMenu.enterChoice(ReportMenu.VALID_CHOICES, in, "Please, enter a choice: Select a menu: ");
-                if (choice.equals('b')) { return; }
+                if (choice.equals('b')) {
+                    return;
+                }
                 ReportMenu.chooseMenuItem(choice, initializer, in, report);
             }
             System.out.println();
