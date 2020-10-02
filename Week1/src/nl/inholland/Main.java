@@ -15,8 +15,7 @@ public class Main {
             input = in.nextLine();
             if (invalidInt(input)) {
                 System.out.println("That was not a valid number.");
-            }
-            else if (Integer.parseInt(input) < 1) {
+            } else if (Integer.parseInt(input) < 1) {
                 System.out.println("Please enter a number greater than 0.");
             }
         }
@@ -62,7 +61,7 @@ public class Main {
             }
             while (!validAnswer);
         }
-        
+
         System.out.println();
 
         // Show students and whether they're present
@@ -77,8 +76,7 @@ public class Main {
         try {
             Integer.parseInt(value);
             return false;
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return true;
         }
     }
