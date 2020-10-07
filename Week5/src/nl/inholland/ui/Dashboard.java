@@ -26,36 +26,13 @@ public class Dashboard {
 
         // Create components
         Label welcomeLabel = new Label(String.format("Welcome %s", user.firstName));
-        MenuBar menuBar = new MenuBar();
-        Menu dashboardMenu = new Menu("Dashboard");
-        Menu studentsMenu = new Menu("Students");
-        Menu teachersMenu = new Menu("Teachers");
 
         // Add attributes
         welcomeLabel.setFont(new Font(50));
-        onAction(dashboardMenu);
-        onAction(studentsMenu);
-        onAction(teachersMenu);
-
-        // When button is clicked
-        dashboardMenu.setOnAction(actionEvent -> {
-            new Dashboard(user);
-            window.close();
-        });
-
-        studentsMenu.setOnAction(actionEvent -> {
-            new Students(user);
-            window.close();
-        });
-
-        teachersMenu.setOnAction(actionEvent -> {
-            new Teachers(user);
-            window.close();
-        });
 
         // Add components to its container
-        menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
-        container.setTop(menuBar);
+
+        container.setTop(NavigationMenu.getMenu(window, user));
         container.setCenter(welcomeLabel);
 
         // Set scene
@@ -63,13 +40,5 @@ public class Dashboard {
 
         // Show window
         window.show();
-    }
-
-    public static void onAction(Menu menu) {
-        final MenuItem menuItem = new MenuItem();
-
-        menu.getItems().add(menuItem);
-        menu.addEventHandler(Menu.ON_SHOWN, event -> menu.hide());
-        menu.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());
     }
 }
