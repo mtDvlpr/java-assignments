@@ -45,11 +45,11 @@ public class Person_Service {
         return db.getReports();
     }
 
-    public void saveStudents(List<Student> students) {
-        db.saveStudents(students);
+    public boolean saveStudents(List<Student> students) {
+        return db.saveStudents(students);
     }
 
-    public void saveTeachers(List<Teacher> teachers) {
-        db.saveTeachers(teachers);
+    public boolean saveTeachers(List<Teacher> teachers) {
+        return db.saveTeachers(teachers);
     }
 }

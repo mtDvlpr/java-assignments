@@ -98,6 +98,35 @@ public class Students {
             window.close();
         });
 
+        editButton.setOnAction(actionEvent -> {
+            if (!tableView.getSelectionModel().isEmpty()) {
+                new EditStudent(user, students.get(students.indexOf(tableView.getSelectionModel().getSelectedItem())));
+                window.close();
+            }
+            else {
+                new Alert(Alert.AlertType.INFORMATION, "Please select a student to edit.").show();
+            }
+        });
+
+        deleteButton.setOnAction(actionEvent -> {
+            if (!tableView.getSelectionModel().isEmpty()) {
+                Student student = tableView.getSelectionModel().getSelectedItem();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete " + student.firstName + " " + student.lastName + "?", ButtonType.YES, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                    students.remove(student);
+                    personService.saveStudents(students);
+                }
+                else {
+                    tableView.getSelectionModel().clearSelection();
+                }
+            }
+            else {
+                new Alert(Alert.AlertType.INFORMATION, "Please select a student to delete.").show();
+            }
+        });
+
         // Add components to its container
         menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         if (user.levelOfAccess != LevelOfAccess.Basic) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
