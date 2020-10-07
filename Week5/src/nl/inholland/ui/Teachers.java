@@ -81,8 +81,7 @@ public class Teachers {
             if (!tableView.getSelectionModel().isEmpty()) {
                 new EditTeacher(user, teachers.get(teachers.indexOf(tableView.getSelectionModel().getSelectedItem())));
                 window.close();
-            }
-            else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Please select a teacher to edit.").show();
             }
         });
@@ -96,18 +95,18 @@ public class Teachers {
                 if (alert.getResult() == ButtonType.YES) {
                     teachers.remove(teacher);
                     personService.saveTeachers(teachers);
-                }
-                else {
+                } else {
                     tableView.getSelectionModel().clearSelection();
                 }
-            }
-            else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Please select a teacher to delete.").show();
             }
         });
 
         // Add components to its container
-        if (user.levelOfAccess == LevelOfAccess.Admin) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
+        if (user.levelOfAccess == LevelOfAccess.Admin) {
+            buttons.getChildren().addAll(addButton, editButton, deleteButton);
+        }
 
         //noinspection unchecked
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn);

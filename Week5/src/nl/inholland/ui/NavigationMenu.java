@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 import nl.inholland.model.Person;
 
 public class NavigationMenu {
-    private MenuBar menuBar;
-    private Menu dashboardMenu;
-    private Menu studentsMenu;
-    private Menu teachersMenu;
-    private Menu logoutMenu;
+    private final MenuBar menuBar;
+    private final Menu dashboardMenu;
+    private final Menu studentsMenu;
+    private final Menu teachersMenu;
+    private final Menu logoutMenu;
 
     public NavigationMenu() {
         menuBar = new MenuBar();

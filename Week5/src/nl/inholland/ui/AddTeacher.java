@@ -66,7 +66,8 @@ public class AddTeacher {
         LocalDate minDate = LocalDate.now().minusYears(100);
         LocalDate maxDate = LocalDate.now().minusYears(10);
         dateInput.setConverter(new StringConverter<>() {
-            @Override public String toString(LocalDate date) {
+            @Override
+            public String toString(LocalDate date) {
                 if (date != null) {
                     return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
                 } else {
@@ -74,7 +75,8 @@ public class AddTeacher {
                 }
             }
 
-            @Override public LocalDate fromString(String string) {
+            @Override
+            public LocalDate fromString(String string) {
                 if (string != null && !string.isEmpty()) {
                     LocalDate date = LocalDate.parse(string, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     if (date.isAfter(minDate) && date.isBefore(maxDate)) {
@@ -86,10 +88,12 @@ public class AddTeacher {
         });
         dateInput.setDayCellFactory(d ->
                 new DateCell() {
-                    @Override public void updateItem(LocalDate item, boolean empty) {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                         setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
-                    }});
+                    }
+                });
 
         // When button is clicked
         addButton.setOnAction(actionEvent -> {
@@ -102,16 +106,14 @@ public class AddTeacher {
 
             if (username.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || salaryInput.getText().isEmpty() || birthDate == null) {
                 new Alert(Alert.AlertType.INFORMATION, "Please fill in the whole form.").show();
-            }
-            else {
+            } else {
                 List<Teacher> teachers = personService.getTeachers();
                 teachers.add(new Teacher(firstName, lastName, birthDate, salary, username, password));
                 if (personService.saveTeachers(teachers)) {
                     new Alert(Alert.AlertType.INFORMATION, firstName + " was successfully added.").showAndWait();
                     new Teachers(user);
                     window.close();
-                }
-                else {
+                } else {
                     new Alert(Alert.AlertType.WARNING, "Something went wrong while trying to add " + firstName + ".");
                 }
             }
@@ -125,13 +127,13 @@ public class AddTeacher {
         // Add components to their container
         buttons.getChildren().addAll(addButton, cancelButton);
 
-        grid.add(userInput, 0,0);
-        grid.add(dateInput, 1,0);
-        grid.add(passwordInput, 0,1);
-        grid.add(firstNameInput, 0,2);
-        grid.add(lastNameInput, 0,3);
-        grid.add(salaryInput, 0,4);
-        grid.add(buttons, 0,5);
+        grid.add(userInput, 0, 0);
+        grid.add(dateInput, 1, 0);
+        grid.add(passwordInput, 0, 1);
+        grid.add(firstNameInput, 0, 2);
+        grid.add(lastNameInput, 0, 3);
+        grid.add(salaryInput, 0, 4);
+        grid.add(buttons, 0, 5);
 
         content.getChildren().addAll(title, grid);
         container.setTop(menu.getMenu(window, user));

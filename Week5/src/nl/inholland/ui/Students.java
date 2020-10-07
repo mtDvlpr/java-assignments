@@ -81,8 +81,7 @@ public class Students {
             if (!tableView.getSelectionModel().isEmpty()) {
                 new EditStudent(user, students.get(students.indexOf(tableView.getSelectionModel().getSelectedItem())));
                 window.close();
-            }
-            else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Please select a student to edit.").show();
             }
         });
@@ -96,18 +95,18 @@ public class Students {
                 if (alert.getResult() == ButtonType.YES) {
                     students.remove(student);
                     personService.saveStudents(students);
-                }
-                else {
+                } else {
                     tableView.getSelectionModel().clearSelection();
                 }
-            }
-            else {
+            } else {
                 new Alert(Alert.AlertType.INFORMATION, "Please select a student to delete.").show();
             }
         });
 
         // Add components to its container
-        if (user.levelOfAccess != LevelOfAccess.Basic) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
+        if (user.levelOfAccess != LevelOfAccess.Basic) {
+            buttons.getChildren().addAll(addButton, editButton, deleteButton);
+        }
 
         //noinspection unchecked
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, groupColumn);

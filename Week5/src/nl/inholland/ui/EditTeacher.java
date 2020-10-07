@@ -75,7 +75,8 @@ public class EditTeacher {
         LocalDate minDate = LocalDate.now().minusYears(100);
         LocalDate maxDate = LocalDate.now().minusYears(10);
         dateInput.setConverter(new StringConverter<>() {
-            @Override public String toString(LocalDate date) {
+            @Override
+            public String toString(LocalDate date) {
                 if (date != null) {
                     return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
                 } else {
@@ -83,7 +84,8 @@ public class EditTeacher {
                 }
             }
 
-            @Override public LocalDate fromString(String string) {
+            @Override
+            public LocalDate fromString(String string) {
                 if (string != null && !string.isEmpty()) {
                     LocalDate date = LocalDate.parse(string, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     if (date.isAfter(minDate) && date.isBefore(maxDate)) {
@@ -95,10 +97,12 @@ public class EditTeacher {
         });
         dateInput.setDayCellFactory(d ->
                 new DateCell() {
-                    @Override public void updateItem(LocalDate item, boolean empty) {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                         setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
-                    }});
+                    }
+                });
 
         // When button is clicked
         editButton.setOnAction(actionEvent -> {
@@ -109,8 +113,7 @@ public class EditTeacher {
 
             if (firstName.isEmpty() || lastName.isEmpty() || salaryInput.getText().isEmpty() || birthDate == null) {
                 new Alert(Alert.AlertType.INFORMATION, "Please fill in the whole form.").show();
-            }
-            else {
+            } else {
                 List<Teacher> teachers = personService.getTeachers();
                 Teacher newTeacher = teacher;
                 for (Teacher t : teachers) {
@@ -127,8 +130,7 @@ public class EditTeacher {
                     new Alert(Alert.AlertType.INFORMATION, firstName + " was successfully edited.").showAndWait();
                     new Students(user);
                     window.close();
-                }
-                else {
+                } else {
                     new Alert(Alert.AlertType.WARNING, "Something went wrong while trying to edit " + firstName + ".");
                 }
             }
@@ -142,13 +144,13 @@ public class EditTeacher {
         // Add components to their container
         buttons.getChildren().addAll(editButton, cancelButton);
 
-        grid.add(idInput, 0,0);
-        grid.add(dateInput, 1,0);
-        grid.add(userInput, 0,1);
-        grid.add(firstNameInput, 0,2);
-        grid.add(lastNameInput, 0,3);
-        grid.add(salaryInput, 0,4);
-        grid.add(buttons, 0,5);
+        grid.add(idInput, 0, 0);
+        grid.add(dateInput, 1, 0);
+        grid.add(userInput, 0, 1);
+        grid.add(firstNameInput, 0, 2);
+        grid.add(lastNameInput, 0, 3);
+        grid.add(salaryInput, 0, 4);
+        grid.add(buttons, 0, 5);
 
         content.getChildren().addAll(title, grid);
         container.setTop(menu.getMenu(window, user));
