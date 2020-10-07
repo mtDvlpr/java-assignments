@@ -24,15 +24,14 @@ public class Database {
     }
 
     private void readStudents() {
-        try(Scanner studentScanner = new Scanner(new File("src/resources/students.csv"))) {
+        try (Scanner studentScanner = new Scanner(new File("src/resources/students.csv"))) {
             while (true) {
                 try {
                     String line = studentScanner.nextLine();
                     String[] studentArray = line.split(",");
                     Student student = new Student(Integer.parseInt(studentArray[0]), studentArray[1], studentArray[2], LocalDate.parse(studentArray[3]), studentArray[4], studentArray[5], studentArray[6]);
                     persons.add(student);
-                }
-                catch (NoSuchElementException nsee) {
+                } catch (NoSuchElementException nsee) {
                     break;
                 }
             }
@@ -42,15 +41,14 @@ public class Database {
     }
 
     private void readTeachers() {
-        try(Scanner teacherScanner = new Scanner(new File("src/resources/teachers.csv"))) {
+        try (Scanner teacherScanner = new Scanner(new File("src/resources/teachers.csv"))) {
             while (true) {
                 try {
                     String line = teacherScanner.nextLine();
                     String[] teacherArray = line.split(",");
                     Teacher teacher = new Teacher(Integer.parseInt(teacherArray[0]), teacherArray[1], teacherArray[2], LocalDate.parse(teacherArray[3]), Double.parseDouble(teacherArray[4]), teacherArray[5], teacherArray[6]);
                     persons.add(teacher);
-                }
-                catch (NoSuchElementException nsee) {
+                } catch (NoSuchElementException nsee) {
                     break;
                 }
             }
@@ -60,15 +58,14 @@ public class Database {
     }
 
     private void readManagers() {
-        try(Scanner managerScanner = new Scanner(new File("src/resources/managers.csv"))) {
+        try (Scanner managerScanner = new Scanner(new File("src/resources/managers.csv"))) {
             while (true) {
                 try {
                     String line = managerScanner.nextLine();
                     String[] managerArray = line.split(",");
                     Manager manager = new Manager(Integer.parseInt(managerArray[0]), managerArray[1], managerArray[2], LocalDate.parse(managerArray[3]), managerArray[4], managerArray[5]);
                     persons.add(manager);
-                }
-                catch (NoSuchElementException nsee) {
+                } catch (NoSuchElementException nsee) {
                     break;
                 }
             }
@@ -78,7 +75,7 @@ public class Database {
     }
 
     public List<String> getGroups() {
-        try(Scanner groupScanner = new Scanner(new File("src/resources/groups.csv"))) {
+        try (Scanner groupScanner = new Scanner(new File("src/resources/groups.csv"))) {
             String line = groupScanner.nextLine();
             String[] groups = line.split(",");
             return Arrays.asList(groups);
@@ -89,15 +86,14 @@ public class Database {
     }
 
     private void readReports() {
-        try(Scanner reportScanner = new Scanner(new File("src/resources/Reports.csv"))) {
+        try (Scanner reportScanner = new Scanner(new File("src/resources/Reports.csv"))) {
             while (true) {
                 try {
                     String line = reportScanner.nextLine();
                     String[] reportArray = line.split(",");
                     Report report = new Report(getStudentById(Integer.parseInt(reportArray[0])), Integer.parseInt(reportArray[1]), Integer.parseInt(reportArray[2]), Integer.parseInt(reportArray[3]), Integer.parseInt(reportArray[4]));
                     reports.add(report);
-                }
-                catch (NoSuchElementException nsee) {
+                } catch (NoSuchElementException nsee) {
                     break;
                 }
             }
@@ -106,15 +102,19 @@ public class Database {
         }
     }
 
-    public List<Report> getReports() { return reports; }
+    public List<Report> getReports() {
+        return reports;
+    }
 
-    public List<Person> getPersons() { return persons; }
+    public List<Person> getPersons() {
+        return persons;
+    }
 
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof Student) {
-                students.add((Student)person);
+                students.add((Student) person);
             }
         }
         return students;
