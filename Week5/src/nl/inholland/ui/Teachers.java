@@ -39,10 +39,7 @@ public class Teachers {
         HBox buttons = new HBox(10);
 
         // Create components
-        MenuBar menuBar = new MenuBar();
-        Menu dashboardMenu = new Menu("Dashboard");
-        Menu studentsMenu = new Menu("Students");
-        Menu teachersMenu = new Menu("Teachers");
+        NavigationMenu menu = new NavigationMenu();
 
         Label title = new Label("Teachers");
         TableView<Teacher> tableView = new TableView<>();
@@ -73,26 +70,8 @@ public class Teachers {
         tableView.setPlaceholder(new Label("No rows to display"));
         content.setPadding(new Insets(10));
         title.setFont(new Font(30));
-        onAction(dashboardMenu);
-        onAction(studentsMenu);
-        onAction(teachersMenu);
 
         // When button is clicked
-        dashboardMenu.setOnAction(actionEvent -> {
-            new Dashboard(user);
-            window.close();
-        });
-
-        studentsMenu.setOnAction(actionEvent -> {
-            new Students(user);
-            window.close();
-        });
-
-        teachersMenu.setOnAction(actionEvent -> {
-            new Teachers(user);
-            window.close();
-        });
-
         addButton.setOnAction(actionEvent -> {
             new AddTeacher(user);
             window.close();
@@ -128,7 +107,6 @@ public class Teachers {
         });
 
         // Add components to its container
-        menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         if (user.levelOfAccess == LevelOfAccess.Admin) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
 
         //noinspection unchecked
@@ -143,7 +121,7 @@ public class Teachers {
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         content.getChildren().addAll(title, tableView, buttons);
-        container.setTop(menuBar);
+        container.setTop(menu.getMenu(window, user));
         container.setCenter(content);
 
         // Set scene
@@ -153,13 +131,5 @@ public class Teachers {
 
         // Show window
         window.show();
-    }
-
-    public static void onAction(Menu menu) {
-        final MenuItem menuItem = new MenuItem();
-
-        menu.getItems().add(menuItem);
-        menu.addEventHandler(Menu.ON_SHOWN, event -> menu.hide());
-        menu.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());
     }
 }

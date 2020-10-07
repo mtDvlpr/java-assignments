@@ -39,11 +39,7 @@ public class AddTeacher {
         grid.setVgap(10);
 
         // Create components
-        MenuBar menuBar = new MenuBar();
-        Menu dashboardMenu = new Menu("Dashboard");
-        Menu studentsMenu = new Menu("Students");
-        Menu teachersMenu = new Menu("Teachers");
-
+        NavigationMenu menu = new NavigationMenu();
         Label title = new Label("Add Teacher");
         Button addButton = new Button("Add Teacher");
         Button cancelButton = new Button("Cancel");
@@ -59,9 +55,6 @@ public class AddTeacher {
         content.setPadding(new Insets(10));
         title.setFont(new Font(30));
         dateInput.setPrefWidth(210);
-        onAction(dashboardMenu);
-        onAction(studentsMenu);
-        onAction(teachersMenu);
 
         userInput.setPromptText("Username");
         passwordInput.setPromptText("Password");
@@ -99,21 +92,6 @@ public class AddTeacher {
                     }});
 
         // When button is clicked
-        dashboardMenu.setOnAction(actionEvent -> {
-            new Dashboard(user);
-            window.close();
-        });
-
-        studentsMenu.setOnAction(actionEvent -> {
-            new Students(user);
-            window.close();
-        });
-
-        teachersMenu.setOnAction(actionEvent -> {
-            new Teachers(user);
-            window.close();
-        });
-
         addButton.setOnAction(actionEvent -> {
             String username = userInput.getText();
             String password = passwordInput.getText();
@@ -145,7 +123,6 @@ public class AddTeacher {
         });
 
         // Add components to their container
-        menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         buttons.getChildren().addAll(addButton, cancelButton);
 
         grid.add(userInput, 0,0);
@@ -157,7 +134,7 @@ public class AddTeacher {
         grid.add(buttons, 0,5);
 
         content.getChildren().addAll(title, grid);
-        container.setTop(menuBar);
+        container.setTop(menu.getMenu(window, user));
         container.setCenter(content);
 
         // Set scene
@@ -167,13 +144,5 @@ public class AddTeacher {
 
         // Show window
         window.show();
-    }
-
-    public static void onAction(Menu menu) {
-        final MenuItem menuItem = new MenuItem();
-
-        menu.getItems().add(menuItem);
-        menu.addEventHandler(Menu.ON_SHOWN, event -> menu.hide());
-        menu.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());
     }
 }

@@ -40,10 +40,7 @@ public class EditStudent {
         grid.setVgap(10);
 
         // Create components
-        MenuBar menuBar = new MenuBar();
-        Menu dashboardMenu = new Menu("Dashboard");
-        Menu studentsMenu = new Menu("Students");
-        Menu teachersMenu = new Menu("Teachers");
+        NavigationMenu menu = new NavigationMenu();
 
         Label title = new Label("Edit Student");
         Button editButton = new Button("Edit Student");
@@ -61,9 +58,6 @@ public class EditStudent {
         title.setFont(new Font(30));
         groupInput.setPrefWidth(200);
         dateInput.setPrefWidth(210);
-        onAction(dashboardMenu);
-        onAction(studentsMenu);
-        onAction(teachersMenu);
 
         firstNameInput.setPromptText("First name");
         lastNameInput.setPromptText("Last name");
@@ -109,21 +103,6 @@ public class EditStudent {
                     }});
 
         // When button is clicked
-        dashboardMenu.setOnAction(actionEvent -> {
-            new Dashboard(user);
-            window.close();
-        });
-
-        studentsMenu.setOnAction(actionEvent -> {
-            new Students(user);
-            window.close();
-        });
-
-        teachersMenu.setOnAction(actionEvent -> {
-            new Teachers(user);
-            window.close();
-        });
-
         editButton.setOnAction(actionEvent -> {
             String firstName = firstNameInput.getText();
             String lastName = lastNameInput.getText();
@@ -163,7 +142,6 @@ public class EditStudent {
         });
 
         // Add components to their container
-        menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         buttons.getChildren().addAll(editButton, cancelButton);
 
         grid.add(idInput, 0,0);
@@ -175,7 +153,7 @@ public class EditStudent {
         grid.add(buttons, 0,5);
 
         content.getChildren().addAll(title, grid);
-        container.setTop(menuBar);
+        container.setTop(menu.getMenu(window, user));
         container.setCenter(content);
 
         // Set scene
@@ -185,13 +163,5 @@ public class EditStudent {
 
         // Show window
         window.show();
-    }
-
-    public static void onAction(Menu menu) {
-        final MenuItem menuItem = new MenuItem();
-
-        menu.getItems().add(menuItem);
-        menu.addEventHandler(Menu.ON_SHOWN, event -> menu.hide());
-        menu.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());
     }
 }

@@ -7,13 +7,21 @@ import javafx.stage.Stage;
 import nl.inholland.model.Person;
 
 public class NavigationMenu {
-    private static MenuBar menuBar = new MenuBar();
-    private static Menu dashboardMenu = new Menu("Dashboard");
-    private static Menu studentsMenu = new Menu("Students");
-    private static Menu teachersMenu = new Menu("Teachers");
-    private static Menu logoutMenu = new Menu("Log Out");
+    private MenuBar menuBar;
+    private Menu dashboardMenu;
+    private Menu studentsMenu;
+    private Menu teachersMenu;
+    private Menu logoutMenu;
 
-    public static MenuBar getMenu(Stage window, Person user) {
+    public NavigationMenu() {
+        menuBar = new MenuBar();
+        dashboardMenu = new Menu("Dashboard");
+        studentsMenu = new Menu("Students");
+        teachersMenu = new Menu("Teachers");
+        logoutMenu = new Menu("Log Out");
+    }
+
+    public MenuBar getMenu(Stage window, Person user) {
         onAction(dashboardMenu);
         onAction(studentsMenu);
         onAction(teachersMenu);
@@ -44,7 +52,7 @@ public class NavigationMenu {
         return menuBar;
     }
 
-    private static void onAction(Menu menu) {
+    private void onAction(Menu menu) {
         final MenuItem menuItem = new MenuItem();
 
         menu.getItems().add(menuItem);

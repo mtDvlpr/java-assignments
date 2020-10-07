@@ -26,13 +26,13 @@ public class Dashboard {
 
         // Create components
         Label welcomeLabel = new Label(String.format("Welcome %s", user.firstName));
+        NavigationMenu menu = new NavigationMenu();
 
         // Add attributes
         welcomeLabel.setFont(new Font(50));
 
         // Add components to its container
-
-        container.setTop(NavigationMenu.getMenu(window, user));
+        container.setTop(menu.getMenu(window, user));
         container.setCenter(welcomeLabel);
 
         // Set scene
