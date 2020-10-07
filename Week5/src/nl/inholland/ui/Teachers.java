@@ -130,7 +130,14 @@ public class Teachers {
         // Add components to its container
         menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         if (user.levelOfAccess == LevelOfAccess.Admin) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
-        tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, salaryColumn);
+
+        //noinspection unchecked
+        tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn);
+
+        if (user.levelOfAccess == LevelOfAccess.Admin) {
+            tableView.getColumns().add(salaryColumn);
+        }
+
         tableView.setItems(teachers);
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

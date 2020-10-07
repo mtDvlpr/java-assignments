@@ -130,6 +130,8 @@ public class Students {
         // Add components to its container
         menuBar.getMenus().addAll(dashboardMenu, studentsMenu, teachersMenu);
         if (user.levelOfAccess != LevelOfAccess.Basic) { buttons.getChildren().addAll(addButton, editButton, deleteButton); }
+
+        //noinspection unchecked
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthdateColumn, ageColumn, groupColumn);
         tableView.setItems(students);
 

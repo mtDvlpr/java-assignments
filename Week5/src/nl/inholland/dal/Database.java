@@ -150,7 +150,7 @@ public class Database {
     }
 
     public boolean saveTeachers(List<Teacher> teachers) {
-        try (Writer writer = new FileWriter("src/resources/students.csv")) {
+        try (Writer writer = new FileWriter("src/resources/teachers.csv")) {
             for (Teacher teacher : teachers) {
                 String teacherString = String.format("%s,%s,%s,%s,%s,%s,%s\n",
                         teacher.id,
